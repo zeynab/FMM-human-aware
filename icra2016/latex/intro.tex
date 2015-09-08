@@ -1,0 +1,6 @@
+\section{Introduction}
+
+\paragraph{Story}  - Quantify uncertainity in perception. Use this for generating cost maps adaptively. FMM creates plans using this uncertainity model.
+
+\paragraph{Motivation and approach} - Perception will never be perfect. Unlike other works which choose to ignore this very important aspect of the uncertainity in perception, we propose a model which computes the uncertainity of the location and orientation of multiple people in an environment. We use this model to make informed choices about the cost function for navigation which is then used by a state of the art navigation model using FMM. We dynamically replan based on the perception information available. The key idea is that in cases where the perception is unreliable, we need to make sure that the robot navigates prioritizing safety over social norms.
+\paragraph{Note} Active perception is also important. The robot movement causes uncertainity which can be actively reduced by taking paths which improve the perception information.
