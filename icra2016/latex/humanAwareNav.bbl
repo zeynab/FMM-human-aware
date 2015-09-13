@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{#1}
 \csname url@rmstyle\endcsname
 \providecommand{\newblock}{\relax}
@@ -17,6 +17,99 @@
 \language=\csname l@#1\endcsname
 \fi
 #2}}
+
+\bibitem{Althaus2004}
+P.~Althaus, H.~Ishiguro, T.~Kanda, T.~Miyashita, and H.~Christensen,
+  ``Navigation for human-robot interaction tasks,'' in \emph{Proceedings of the
+  IEEE International Conference on Robotics and Automation}, vol.~2, 2004, pp.
+  1894--1900.
+
+\bibitem{Kruse2013}
+T.~Kruse, A.~K. Pandey, R.~Alami, and A.~Kirsch, ``Human-aware robot
+  navigation: A survey,'' \emph{Robotics and Autonomous Systems}, vol.~61,
+  no.~12, pp. 1726 -- 1743, 2013.
+
+\bibitem{Mumm2011}
+J.~Mumm and B.~Mutlu, ``Human-robot proxemics: Physical and psychological
+  distancing in human-robot interaction,'' in \emph{6th ACM/IEEE International
+  Conference on Human-Robot Interaction}, 2011, pp. 331--338.
+
+\bibitem{Takayama2009}
+L.~Takayama and C.~Pantofaru, ``Influences on proxemic behaviors in human-robot
+  interaction,'' in \emph{IEEE/RSJ International Conference on Intelligent
+  Robots and Systems}, 2009, pp. 5495--5502.
+
+\bibitem{Walters2011}
+M.~Walters, M.~Oskoei, D.~Syrdal, and K.~Dautenhahn, ``A long-term human-robot
+  proxemic study,'' in \emph{IEEE RO-MAN}, 2011, pp. 137--142.
+
+\bibitem{ferrer2013robot}
+G.~Ferrer, A.~Garrell, and A.~Sanfeliu, ``Robot companion: A social-force based
+  approach with human awareness-navigation in crowded environments,'' in
+  \emph{IEEE/RSJ International Conference on Intelligent Robots and Systems},
+  2013, pp. 1688--1694.
+
+\bibitem{Hall1969}
+E.~T. Hall, ``The hidden dimension,'' 1966.
+
+\bibitem{gomez2013social}
+J.~V. G{\'o}mez, N.~Mavridis, and S.~Garrido, ``Social path planning: Generic
+  human-robot interaction framework for robotic navigation tasks,'' in
+  \emph{2nd Intl. Workshop on Cognitive Robotics Systems: Replicating Human
+  Actions and Activities}, 2013.
+
+\bibitem{sethian1999fast}
+J.~A. Sethian, ``Fast marching methods,'' \emph{SIAM review}, vol.~41, no.~2,
+  pp. 199--235, 1999.
+
+\bibitem{ventura2015}
+R.~Ventura and A.~Ahmad, ``Towards optimal robot navigation in domestic
+  spaces,'' in \emph{RoboCup 2014: Robot World Cup XVIII}.\hskip 1em plus 0.5em
+  minus 0.4em\relax Springer, 2015, pp. 318--331.
+
+\bibitem{kirby2009companion}
+R.~Kirby, R.~Simmons, and J.~Forlizzi, ``Companion: A constraint-optimizing
+  method for person-acceptable navigation,'' in \emph{The 18th IEEE
+  International Symposium on Robot and Human Interactive Communication, 2009.},
+  Sept 2009, pp. 607--612.
+
+\bibitem{gomez2014fast}
+J.~V. G{\'o}mez, N.~Mavridis, and S.~Garrido, ``Fast marching solution for the
+  social path planning problem,'' in \emph{IEEE International Conference on
+  Robotics and Automation}, 2014, pp. 2243--2248.
+
+\bibitem{valero2013fast}
+A.~Valero-Gomez, J.~V. Gomez, S.~Garrido, and L.~Moreno, ``Fast marching
+  methods in path planning,'' \emph{IEEE Robotics and Automation Magazine, no},
+  2013.
+
+\bibitem{correa2014uncertainty}
+J.~Correa~Villanueva, ``Uncertainty and social considerations for mobile
+  assistive robot navigation,'' Ph.D. dissertation, Imperial College London,
+  2014.
+
+\bibitem{Dautenhahn2006}
+K.~Dautenhahn, M.~Walters, S.~Woods, K.~L. Koay, and C.~L. Nehaniv, ``How may i
+  serve you?: a robot companion approaching a seated person in a helping
+  context,'' in \emph{1st ACM SIGCHI/SIGART conference on Humanrobot
+  interaction}.\hskip 1em plus 0.5em minus 0.4em\relax ACM Press, 2006, pp.
+  172--179.
+
+\bibitem{Martinson2007}
+E.~Martinson, ``Hiding the acoustic signature of a mobile robot,'' in
+  \emph{IEEE/RSJ International Conference on Intelligent Robots and Systems},
+  2007, pp. 985--990.
+
+\bibitem{Vasquez2012}
+D.~Vasquez, P.~Stein, J.~Rios-Martinez, A.~Escobedo, A.~Spalanzani, and
+  C.~Laugier, ``{Human Aware Navigation for Assistive Robotics},'' in
+  \emph{{13th International Symposium on Experimental Robotics}}, 2012.
+
+\bibitem{lichtenthaler2013towards}
+C.~Lichtenth{\"a}ler and A.~Kirsch, ``Towards legible robot navigation—how to
+  increase the intend expressiveness of robot navigation behavior,'' in
+  \emph{International conference on social robotics—workshop embodied
+  communication of goals and intentions}, 2013.
 
 \bibitem{arras2007}
 K.~O. Arras, O.~M. Mozos, and W.~Burgard, ``Using boosted features for the

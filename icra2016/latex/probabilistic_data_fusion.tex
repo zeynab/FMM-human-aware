@@ -1,3 +1,39 @@
 \section{PROBABILISTIC DATA FUSION MODEL}
+We are interested in the underlying \textit{state} of the environment which is modelled as a tuple: location and orientation of the people. The \textit{discriminative detectors} used to estimate these state variables have associated noise due to various state factors such as occlusion, lighting conditions, different posture of people, motion of the robot and the people. Coupled with this, there is also stochasitcity in the state transitions, which makes it hard to compute an exact estimate of the location of the people. A principled approach to solve this problem, is to compute a \textbf{belief} (posterior distribution) over the states using recursive bayesian estimation. More formally,
 
-Multiple sensing sources (over head cameras, onboard kinect and lasers). MCMC based tracking model for integrating multiple sources. Joint state representation which reasons about multiple people in the environment.State of the art models of observation functions which reasons about the uncertainity of the different detectors (overhead camera detectors, kinect skeleton tracker, leg detector) which aids in accurate computation of uncertainity.
+LeT $\textbf{X}_{t}$ be the state of the environment at time \textit{t}.
+\begin{align}
+P(\textbf{X}_{t} | \textbf{O}_{t}) = \dfrac{P(\textbf{O}_{t} | \textbf{X}_{t}) P(\textbf{X}_{t}|\textbf{X}_{t-1})} {P(\textbf{X})}
+\end{align} 
+
+Where, $P(\textbf{O}_{t} | \textbf{X}_{t})$ is the likelihood of the state given all our observations (detector outputs). Computation of this likelihood is best performed by using a learnt model of how the detectors perform for different states. Details of how these \textit{observation models} are created is explained in the next section.
+
+$P(\textbf{X}_{t}|\textbf{X}_{t-1})$ is the \textit{transition model} which models the evolution of the state variables. For a multi person natural environment, an exact analyitical model is intractable. We model the motion of the people independently. we assume a first order model for motion incorporating velocity of the person. Interactions between people are environment specific and is outside the scope of this work. So we choose to ignore this aspect of the environment and attribute it to the uncertainity we have in the state estimation. The exact model for a multi person environment is given in section ......
+
+Another important aspect is the computation of this belief itself. the state space is extremely complex so as to compute exactly this probability 
+distribution over the states. We use an MCMC based sampling algorithm to approximately compute the belief. The details of our sampling alogorithm is given in section .......
+
+For the purpose of the human aware navigation planner, we transform these beliefs to a lower dimensional representation which is a 2-dimensional gaussian over the location of the person.
+
+\subsection{Detectors}
+We use three different sources of information. Person detection using over head cameras, leg detection using on-board lasers and skeleton detection using on-board kinect. 
+
+\subsection{Observation models}
+
+\subsection{Transition models}
+
+\subsection{MCMC sampling algorithm}
+
+
+\section{GREEDY DATA FUSION: SIMULATED UNCERTAINITY}
+For the purpose of experiments, we have simpified the system by using simulated measure of uncertainity. In this section, the motivation for using such a measure and how it will translate directly to integration with the real probabilistic data fusion system is explained.
+
+\subsection{Motivation} 
+The belief over the location of the people is a complex function which will be analytically hard to represent without approximations. A gaussian distribution is an ideal choice to approximate this uncertainity. The primary idea is to transform the belief over the location of the people to a 2-dimensional gaussian over the x and y coordinates. Depending on the location of the person, the robot and other people, we can have different degrees of uncertainitiy in the location and this will make it a gaussian distribution with varying sigma. We can simulate this final gaussian distribution of uncertainity by using the same state features which we use to learn the observation function (distance to robot, velocity of the robot). 
+
+\subsection{Simulated uncertainity - Single person}
+
+For the skeleton tracker, we use the relative distance of the person with respect to the robot and the relative velocity of the robot and the person. We model the uncertainity as a wieghted function of the sigma of the gaussians for velocity feature and the distance feature in each axis. For the distance feature, the gaussian 
+
+\subsection{Greedy data fusion}
+
