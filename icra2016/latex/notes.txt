@@ -1,0 +1,3 @@
+However, contrary to approach we propose in this paper, these works are only validated in computer simulation.
+
+Comfort is defined as a relative state in which the body is relieved of unpleasant sensory or environmental stimuli [25]

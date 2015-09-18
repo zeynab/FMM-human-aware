@@ -1,0 +1,19 @@
+Including Human Factors for Planning Comfortable Paths
+
+Morales, Yoichi
+Watanabe, Atsushi
+Ferreri, Florent
+Even, Jani
+Ikeda, Tetsushi
+Shinozawa, Kazuhiro
+Miyashita, Takahiro
+Hagita, Norihiro
+
+However, contrary to approach we propose in this paper, these works are only validated in computer simulation.
+
+Comfort is defined as a relative state in which the body is relieved of unpleasant sensory or environmental stimuli [25]
+K. Y. Kolcaba, “Holistic comfort: operationalizing the construct as a nurse-sensitive outcome,” Advances in Nursing Science, vol. 15, no. 1, pp. 1–10, 1992.
+
+The work in [23] defines a comfortable wheelchair ride as a ride having low jerk, smooth velocity and acceleration without oscillation that maintains sufficient clearance from its surroundings. To achieve comfortable navigation, robot trajectory should be smooth, avoiding zigzag effects and unnecessary acceleration/decelerations. Also, the robot should navigate in adequate locations in the environment (Section IV-A) and it should provide good environmental visibility for the passenger in blind areas (Section IV-B).
+
+To achieve navigational comfort, we implemented a motion planner capable of smoothly following a path by avoiding unnecessary jerking and changes in the velocities (Section IV-D).
