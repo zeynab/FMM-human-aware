@@ -111,6 +111,17 @@ C.~Lichtenth{\"a}ler and A.~Kirsch, ``Towards legible robot navigation—how to
   \emph{International conference on social robotics—workshop embodied
   communication of goals and intentions}, 2013.
 
+\bibitem{fox1997dynamic}
+D.~Fox, W.~Burgard, and S.~Thrun, ``The dynamic window approach to collision
+  avoidance,'' \emph{IEEE Robotics \& Automation Magazine}, vol.~4, no.~1, pp.
+  23--33, 1997.
+
+\bibitem{Messias2014robotic}
+J.~Messias, R.~Ventura, P.~Lima, J.~Sequeira, P.~Alvito, C.~Marques, and
+  P.~Carri{\c{c}}o, ``A robotic platform for edutainment activities in a
+  pediatric hospital,'' in \emph{2014 IEEE International Conference on
+  Autonomous Robot Systems and Competitions,}, 2014, pp. 193--198.
+
 \bibitem{arras2007}
 K.~O. Arras, O.~M. Mozos, and W.~Burgard, ``Using boosted features for the
   detection of people in 2d range data,'' in \emph{2007 IEEE International
