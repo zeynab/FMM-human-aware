@@ -1,4 +1,4 @@
-\section{PROBABILISTIC DATA FUSION MODEL}
+\section{PROBABILISTIC TRACKING MODEL}
 We are interested in the underlying \textit{state} of the environment which is modelled as a tuple: location and orientation of the people. The \textit{discriminative detectors} used to estimate these state variables have associated noise due to various state factors such as occlusion, lighting conditions, different posture of people, motion of the robot and the people. Coupled with this, there is also stochasitcity in the state transitions, which makes it hard to compute an exact estimate of the location of the people. A principled approach to solve this problem, is to compute a \textbf{belief} (posterior distribution) over the states using recursive bayesian estimation. More formally,
 
 LeT $\textbf{X}_{t}$ be the state of the environment at time \textit{t}.
@@ -13,35 +13,10 @@ $P(\textbf{X}_{t}|\textbf{X}_{t-1})$ is the \textit{transition model} which mode
 Another important aspect is the computation of this belief itself. the state space is extremely complex so as to compute exactly this probability 
 distribution over the states. We use an MCMC based sampling algorithm to approximately compute the belief. The details of our sampling alogorithm is given in section .......
 
-For the purpose of the human aware navigation planner, we transform these beliefs to a lower dimensional representation which is a 2-dimensional gaussian over the location of the person.
+%For the purpose of the human aware navigation planner, we transform these beliefs to a lower dimensional representation which is a 2-dimensional gaussian over the location of the person.
 
-\subsection{Detectors}
-We use three different sources of information. Person detection using over head cameras, leg detection using on-board lasers and skeleton detection using on-board kinect. 
-
+\subsection{Detector}
+We use a probabilsitic background based detector
 \subsection{Observation models}
 We learn from data, the distribution $P(\textbf{O}|\textbf{X})$ for each detector. 
-\subsubsection{Leg detector}
 
-\subsubsection{Skeleton detector}
-
-\subsection{Transition models}
-
-\begin{align}
-P(\textbf{X}_{t}|\textbf{X}_{t-1}) = \prod_{i=1}^{n} P(\textbf{X}^{i}_{t}|\textbf{X}^{i}_{t-1})
-\end{align}
-\subsection{MCMC sampling algorithm}
-
-
-\section{GREEDY DATA FUSION: SIMULATED UNCERTAINITY}
-For the purpose of experiments, we have simpified the system by using simulated measure of uncertainity. In this section, the motivation for using such a measure and how it will translate directly to integration with the real probabilistic data fusion system is explained.
-
-\subsection{Motivation} 
-The belief over the location of the people is a complex function which will be analytically hard to represent without approximations. A gaussian distribution is an ideal choice to approximate this uncertainity. The primary idea is to transform the belief over the location of the people to a 2-dimensional gaussian over the x and y coordinates. Depending on the location of the person, the robot and other people, we can have different degrees of uncertainitiy in the location and this will make it a gaussian distribution with varying sigma. We can simulate this final gaussian distribution of uncertainity by using the same state features which we use to learn the observation function (distance to robot, velocity of the robot). 
-
-\subsection{Simulated uncertainity - Single person}
-
-For the skeleton tracker, we use the relative distance of the person with respect to the robot and the relative velocity of the robot and the person. We model the uncertainity as a wieghted function of the sigma of the gaussians for velocity feature and the distance feature in each axis. For the distance feature, the gaussian 
-
-\subsection{Greedy data fusion}
-
-Add the algorithm for greedy data fusion from multiple sources. How can we use the final detector output and add simulated uncertainity to it?
