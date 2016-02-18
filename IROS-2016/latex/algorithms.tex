@@ -1,76 +1,99 @@
-\section{Learning Algorithms}
+\section{Methods}
+
 \label{sec:algorithms}
 
 
-\begin{table}
-\centering
-\caption{Parameters common to all PSO algorithms}
-\label{table:pso_common_params}
-\begin{tabular}{l l}
-\hline
-Parameter & Value\\
-\hline
-Number of robots $N_{rob}$ & 4\\
-Population size $N_p$ & 24\\
-Evaluation span $t_e$ & 30 s\\
-Personal weight $w_p$ & 2.0\\
-Neighborhood weight $w_n$ & 2.0\\
-Neighborhood size $N_n$ & 3\\
-Dimension $D$ & 24\\
-Inertia $w$ & 0.8\\
-$V_{max}$ & 20\\
-\hline
-\end{tabular}
-\end{table}
+% \begin{table}
+% \centering
+% \caption{Parameters common to all PSO algorithms}
+% \label{table:pso_common_params}
+% \begin{tabular}{l l}
+% \hline
+% Parameter & Value\\
+% \hline
+% Number of robots $N_{rob}$ & 4\\
+% Population size $N_p$ & 24\\
+% Evaluation span $t_e$ & 30 s\\
+% Personal weight $w_p$ & 2.0\\
+% Neighborhood weight $w_n$ & 2.0\\
+% Neighborhood size $N_n$ & 3\\
+% Dimension $D$ & 24\\
+% Inertia $w$ & 0.8\\
+% $V_{max}$ & 20\\
+% \hline
+% \end{tabular}
+% \end{table}
 
-\begin{table}
-\centering
-\caption{Parameters for \emph{PSO std}, \emph{PSO rep}, and \emph{PSO pbest}}
-\label{table:pso_params_std_rep_pbest}
-\begin{tabular}{l l l l}
-\hline
-Parameter & \emph{PSO std} & \emph{PSO rep} & \emph{PSO pbest}\\
-\hline
-Evaluations of new candidates & 1 & 10 & 1\\
-Re-evaluations of pbests & 0 & 0 & 1\\
-Iterations $N_i$ & 500 & 50 & 250\\
-\hline
-\end{tabular}
-\end{table}
+% \begin{table}
+% \centering
+% \caption{Parameters for \emph{PSO std}, \emph{PSO rep}, and \emph{PSO pbest}}
+% \label{table:pso_params_std_rep_pbest}
+% \begin{tabular}{l l l l}
+% \hline
+% Parameter & \emph{PSO std} & \emph{PSO rep} & \emph{PSO pbest}\\
+% \hline
+% Evaluations of new candidates & 1 & 10 & 1\\
+% Re-evaluations of pbests & 0 & 0 & 1\\
+% Iterations $N_i$ & 500 & 50 & 250\\
+% \hline
+% \end{tabular}
+% \end{table}
 
-~\cite{arras2007}. 
+% ~\cite{arras2007}. 
 	
-\begin{figure}
-\hrulefill
+% \begin{figure}
+% \hrulefill
 
-\begin{algorithmic}[1]
-\STATE Initialize particle
-\FOR{$N_i$ iterations}
-	\STATE Evaluate new particle position $n_0$ times
-	\STATE Share evaluation results in neighborhood
-	\STATE Receive and store evaluation results from neighborhood
-	\STATE remaining budget := iteration budget - $n_0 \cdot N_p$ 
-	\WHILE{remaining budget$>0$}
-		\STATE Allocate $\Delta$ samples among current positions and personal bests in neighborhood using OCBA
-		\STATE Evaluate allocated samples
-		\STATE Recalculate mean and variance for new evaluations		
-		\STATE Share evaluation results in neighborhood
-		\STATE Receive and store evaluation results from neighborhood		
-		\STATE remaining budget := remaining budget - $\Delta$
-	\ENDWHILE
-	\STATE Update personal best
-	\STATE Update neighborhood best
-	\STATE Update particle position	
-\ENDFOR
-\end{algorithmic}
-\hrulefill
-\caption{Pseudocode for the \emph{PSO ocbaD} algorithm.}
-\label{fig:pso_ocbaD_algo}
-\end{figure}
+% \begin{algorithmic}[1]
+% \STATE Initialize particle
+% \FOR{$N_i$ iterations}
+% 	\STATE Evaluate new particle position $n_0$ times
+% 	\STATE Share evaluation results in neighborhood
+% 	\STATE Receive and store evaluation results from neighborhood
+% 	\STATE remaining budget := iteration budget - $n_0 \cdot N_p$ 
+% 	\WHILE{remaining budget$>0$}
+% 		\STATE Allocate $\Delta$ samples among current positions and personal bests in neighborhood using OCBA
+% 		\STATE Evaluate allocated samples
+% 		\STATE Recalculate mean and variance for new evaluations		
+% 		\STATE Share evaluation results in neighborhood
+% 		\STATE Receive and store evaluation results from neighborhood		
+% 		\STATE remaining budget := remaining budget - $\Delta$
+% 	\ENDWHILE
+% 	\STATE Update personal best
+% 	\STATE Update neighborhood best
+% 	\STATE Update particle position	
+% \ENDFOR
+% \end{algorithmic}
+% \hrulefill
+% \caption{Pseudocode for the \emph{PSO ocbaD} algorithm.}
+% \label{fig:pso_ocbaD_algo}
+% \end{figure}
 
-\begin{eqnarray}
-\bar{X}_n &=& \frac{(n-1)\bar{X}_{n-1}+X_n}{n}\\
-\sigma ^2_n &=& \frac{(n-2)}{(n-1)}\sigma ^2 _{n-1}+\frac{(x_n-\bar{x}_{n-1})^2}{n}
-\end{eqnarray}
+% \begin{eqnarray}
+% \bar{X}_n &=& \frac{(n-1)\bar{X}_{n-1}+X_n}{n}\\
+% \sigma ^2_n &=& \frac{(n-2)}{(n-1)}\sigma ^2 _{n-1}+\frac{(x_n-\bar{x}_{n-1})^2}{n}
+% \end{eqnarray}
 
-\section{FMM BASED HUMAN AWARE NAVIGATION MODEL}
+\section{FMM Based Human-aware Navigation}
+
+Talk about social costmaps.
+Talk about samples of MCMC tracker as position sample.
+\subsection{Clustering}
+We cluster the sample to obtain the center of the Gaussian and the $\sigma$ values are adaptively computed.
+Random measurements still get picked and clusters are formed.
+
+\subsubsection{Kmeans Clustering}
+Number of clusters should be known ahead of time. Not a realistic assumption for environments with multiple people. More accurate and closer to reality based on our simulations and real collected data from the probabilistic tracker.
+
+
+\subsubsection{Shifted Means Clustering}
+Automatically computes the number of clusters. However, is less accurate. 
+
+\subsection{Convolution}
+The conventional 2D Gaussian shape of the social costmap is not longer kept. We compute the convolution of the estimate of the underlying distribution for presence of people in an environment, by the conventional social costmap to get the final social cost for each position of the map.
+No need to know the number of people, more flexible, easier to discard small probabilities that are random measurements.
+
+
+\section{DWA with Social Factors}
+Discarding velocity candidates that cause discomfort in social zones due to unsuitable velocities or acceleration.
+Penalize velocity candidates that cause the robot to move closer into the social zones.
