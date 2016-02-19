@@ -1,23 +1,32 @@
-\section{Experiments}
-Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
+\section{Results and Discussion}
+%Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
+\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
 
-\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}
-
-1. FMM + without uncertainity\\
-2. FMM + with uncertainity\\
-	2a. Convolution\\
-	2b. clustering\\
-
-3. DWA + without uncertainity\\
-4. DWA + with uncertainity\\
-	2a. Convolution\\
-	2b. clustering\\
-
-All these should have simulations and real robot experiments.\\
+For each of the scenarios described in section \ref{sec:scenarios}, we have compare the results obtained from the 1)basic navigation method, 2)deterministic human-aware navigation, 3)kmeans clustering human-aware navigation, 4)shifted means clustering human-aware navigation, 5)social cost convolution human-aware navigation for both FMM and DWA. 
+Sample results from simulations for the case of static people, are also depicted in Figure ? for comparing the results of our simulations with reality.
 
 
+
+%1. FMM + without uncertainity\\2. FMM + with uncertainity\\	2a. Convolution\\	2b. clustering\\3. DWA + without uncertainity\\4. DWA + with uncertainity\\	2a. Convolution\\	2b. clustering\\
+
+%All these should have simulations and real robot experiments.\\
+\subsection{Results}
 \label{sec:results}
 
+Figures
+Tables of parameters
 
 
 
+
+
+
+
+\subsection{Discussion}
+\label{sec:discussion}
+
+Reasoning about the figures.
+
+We expect to see improvements when applying FMM and more so when considering in uncertainty of perception. Convolution method given its higher flexibility and not requiring the number of people in the scenario is expected to give better results.
+
+DWA cant make a noticeable difference in the trajectories, due to the tendency of the robot to take velocity candidate that are tangent to the planned path and small differences in the new positions of the robot that each candidate will cause. However, it does a good job of discarding velocity candidates that result in uncomfortable accelerations or speeds.
