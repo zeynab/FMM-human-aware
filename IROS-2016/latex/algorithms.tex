@@ -74,26 +74,26 @@
 % \sigma ^2_n &=& \frac{(n-2)}{(n-1)}\sigma ^2 _{n-1}+\frac{(x_n-\bar{x}_{n-1})^2}{n}
 % \end{eqnarray}
 
-\section{FMM Based Human-aware Navigation}
+\subsection{FMM Based Human-aware Navigation}
 
 Talk about social costmaps.
 Talk about samples of MCMC tracker as position sample.
-\subsection{Clustering}
+\subsubsection{Clustering}
 We cluster the sample to obtain the center of the Gaussian and the $\sigma$ values are adaptively computed.
 Random measurements still get picked and clusters are formed.
 
-\subsubsection{Kmeans Clustering}
+\subsubsection*{Kmeans Clustering}
 Number of clusters should be known ahead of time. Not a realistic assumption for environments with multiple people. More accurate and closer to reality based on our simulations and real collected data from the probabilistic tracker.
 
 
-\subsubsection{Shifted Means Clustering}
+\subsubsection*{Shifted Means Clustering}
 Automatically computes the number of clusters. However, is less accurate. 
 
-\subsection{Convolution}
+\subsubsection{Convolution}
 The conventional 2D Gaussian shape of the social costmap is not longer kept. We compute the convolution of the estimate of the underlying distribution for presence of people in an environment, by the conventional social costmap to get the final social cost for each position of the map.
 No need to know the number of people, more flexible, easier to discard small probabilities that are random measurements.
 
 
-\section{DWA with Social Factors}
+\subsection{DWA with Social Factors}
 Discarding velocity candidates that cause discomfort in social zones due to unsuitable velocities or acceleration.
 Penalize velocity candidates that cause the robot to move closer into the social zones.

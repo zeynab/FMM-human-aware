@@ -2,20 +2,21 @@
 
 \dv{Need to have 6 paragraph. 
 First para stays. \\
-Second should motivate human aware navigation using FMM. This means motivating FMM and then human aware navigation using FMM. Also in this para, mention about global and local path planning stategies.\\ 
+Second should motivate human aware navigation using FMM. This means motivating FMM and then human aware navigation using FMM. Also in this para, mention about global and local path planning strategies.\\ 
 Next para should be about the social cost map using proxemics.(I prefer this order since social cost map can only be mentioned after you explain the framework (FMM or DWA which is the path planner).\\
-4th para seems ok now. We motivated social path planning using social cost maps and planners like FMM or DWA. In this para we talk about how and why uncertainity should be used.\\
+4th para seems ok now. We motivated social path planning using social cost maps and planners like FMM or DWA. In this para we talk about how and why uncertainty should be used.\\
 5th para is the place where we talk about our two models.\\
-6th Para should be our results. "We also show from our experiments that...global path planning has these positives and negatives when used for real human aware planning using uncertainity, whereas local strategies have these these issues. }
+6th Para should be our results. "We also show from our experiments that...global path planning has these positives and negatives when used for real human aware planning using uncertainty, whereas local strategies have these these issues. }
 
 \dv{Motivating our work in one para. Looks good for now}
-Human aware navigation is a key problem in social robotics. If robots need to be actively used in natural social environments, one of the main components required is navigation. Robust navigation principles incorporating humans in the environment need to be developed. Robots have to navigate in environments shared with humans and the quality of their movement strongly influences  how their intelligence is perceived~\cite{Althaus2004}. Conventionally, comfort, naturalness and scalability, are the main focus of such human aware navigation techniques ~\cite{Kruse2013}. In this work, we attempt to model one essential aspect of human aware navigation which has been overlooked in this area, uncertainty in the perception.
+Human aware navigation is a key problem in social robotics. If robots need to be actively used in natural social environments, one of the main functionalities required is navigation. %Robust navigation principles incorporating humans in the environment need to be developed. 
+Robots have to navigate in environments shared with humans and the quality of their movement strongly influences  how their intelligence is perceived~\cite{Althaus2004}. Conventionally, comfort, naturalness and scalability, are the main focus of such human aware navigation techniques ~\cite{Kruse2013}. In this work, we attempt to model one essential aspect of human aware navigation which has been overlooked in this area, uncertainty in the perception.
 
 \dv{How do we do human aware navigation. We do it by using social costmaps fed into a navigation planner. So first talk about the path planning, I think we should say that people have tried to do this using global planners. And also talk about local planners. Add a para here about social path planners.}
 
 One important concept which is used in numerous studies~\cite{Mumm2011,Takayama2009,Walters2011,ferrer2013robot} in this area is virtual space around a person that is mutually respected by other humans, called \textit{proxemics}~\cite{Hall1969}.
 Based on this concept, depending on the relationship and the interaction that exists between humans, people choose different social distances relating to intimate, personal, social or public contexts.
-Changes in the expected distance may indicate dislike if it is too large or cause discomfort if it is too small.\dv{avoid ideas like these. This has no relavance to our story} 
+Changes in the expected distance may indicate dislike if it is too large or cause discomfort if it is too small.\dv{avoid ideas like these. This has no relevance to our story} 
 
 
 Social costmaps are a common way to model this principle and have been used in various studies in the field. There are many factors that have a role in shaping this costmap, but the proxemics distance is mainly addressed. Other factors such as speed of a person's movement, gender, age, etc. have also been considered in the literature, but are much less common.\dv{This way of phrasing the available works, makes it feel like uncertainty is just another factor that people ignored to consider. we need to rephrase this idea of social cost maps} 
@@ -47,11 +48,11 @@ Unlike other works which choose to ignore this very important aspect of the unce
 %As stated in~\cite{gomez2013social}, recent work in the human-robot interaction domain can be divided in three categories of 1) human-robot proxemics, 2) human-aware planning and navigation, and 3) robot-to-human approaching and behaving. In this work we focus mostly on the second category using the concepts from human-robot proxemics. %Human-aware path planning has been an area of interest particularly in the recent years. 
 
 \dv{Core idea for last para}
-In this work, we have developed a human aware navigation method incorporating uncertainity in perception. By using an FMM based social navigation planner and a DWA based social navigation planner, we compare how a global and local planning strategy can be used for human aware navigation. We explore the benefits of each strategy in a stochastic environment with varying uncertainity about the location of the people in the environment.
+In this work, we have developed a human aware navigation method incorporating uncertainty in perception. By using an FMM based social navigation planner and a DWA based social navigation planner, we compare how a global and local planning strategy can be used for human aware navigation. We explore the benefits of each strategy in a stochastic environment with varying uncertainty about the location of the people in the environment.
 
 \dv{Use all you need from below for the FMM and DWA para. but all details should be pushed to background. Introduction should be crisp and clear.}
 
-In this research we are introduce a novel social path planning approach based on the fast marching method (FMM)~\cite{sethian1999fast}. FMM has been proven to be successful in real domestic spaces with high complexity\cite{ventura2015}. However, we add a social component to the aforementioned method by augmenting it with social costmaps \textemdash based on proxemics principles~\cite{kirby2009companion}\textemdash~around around individual people which correspond to speedmaps for the FMM method. %\dv{next line should be pushed to background}%
+In this research we are introduce a novel social path planning approach based on the fast marching method (FMM)~\cite{sethian1999fast}. FMM has been proven to be successful in real domestic spaces with high complexity\cite{ventura2015}. However, we add a social component to the aforementioned method by augmenting it with social costmaps \textemdash based on proxemics principles~\cite{kirby2009companion}\textemdash~ around individual people which correspond to speedmaps for the FMM method. %\dv{next line should be pushed to background}%
 There have previously been a number of research papers which have address social path planning~\cite{gomez2014fast,gomez2013social} using FMM. %However, their model is based on known person position and orientation in simulation. 
 
 %\dv{needs more work.}
