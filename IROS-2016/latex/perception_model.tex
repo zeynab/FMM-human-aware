@@ -1,0 +1,65 @@
+\section{perception model}
+\label{sec: perception model}
+%The uncertainity based human-aware navigation system, is comprised of several key components, i.e., probabilistic perception, social path planning and navigation. In this section we will briefly explain each of the parts of our model.
+
+
+Presence of humans in an environment should be properly perceived by a robot as a requirement for a socially-aware path planner that takes into consideration individual humans and possible social interactions taking place in the environment. This information can be obtained by an external source such as an overhead camera or can be attained using on-board sensors of the robot. Different perception sources for person detection and tracking, have different levels of uncertainty and accuracy in their detections, and are affected by various elements such as the movement of the robot, movement of the person, complexity of the environment in terms of occlusions, etc. while, there exist trackers able to perform this task with cm-level accuracy, others have a much larger uncertainty associated to them. 
+
+We use networked cameras to track the location of the people in the environment. Omnidirectional cameras[ref] were chosen because: (1) they are less obtrusive, and can be left in the environment with less risk
+of making people feel uncomfortable about being watched; (2) they provide a global view of the area, with less risk of occlusion than elevated side-view cameras and with more flexibility as to their positioning; (3) we can reduce the number of cameras needed in the environment, which has benefits
+in terms of equipment cost, installation cost and computational load of the perception algorithms.
+
+\subsection{Probabilistic model}
+
+We are interested in the underlying \textit{state} of the environment which is the location of the people. The \textit{detectors} used to estimate these state variables have associated noise due to various state factors such as occlusion, lighting conditions, different posture of people, motion of the robot and the people. Coupled with this, there is also stochasticity in the state transitions, which makes it hard to compute an exact estimate of the location of the people. A principled approach to solve this problem, is to compute a \textit{belief} (posterior distribution) over the states using recursive Bayesian estimation. We first describe the state representation of the system and then explain the tracking model formally.
+
+\subsubsection{Detector}
+The background based detector proposed in [ref] is a very effective probabilistic method, which allows the automatic evaluation of the number of people in the scene and the detection of those people’s location. This method has the following advantages: (1) It can incorporate prior knowledge, including which areas in the scene can contain people and how probable it is for people to be in those locations; a probability distribution over the number of people in the scene; a probabilistic model of how close
+together people tend to walk; etc. (2) The complexity of the algorithm depends linearly on the number of people in the scene. When many people are present in the frame, detecting all of them requires
+more than 1/25th of a second with our current implementation of the algorithm, although it still requires far less than a second. Further optimisations could easily improve this performance. (3) The method is robust to changes in illumination, shadows and occlusions. We have adapted it to adjust to a non-static background automatically.
+
+\subsubsection{State representation}
+
+For tracking the people in the environment, we use an occupancy grid based approach. The environment is discretized into $G$ cells. Each cell is of size 25cm by 25cm. The size of cells have been chosen in such a way that each cell can occupy atmost one person at any time. The occupancy of each cell is denoted by $X_{i}$ where $i \in G$. The occupancy of all the cells at time $t$ is the state of the word $\textbf{X}_{t}$. At every time instance $t$, the observations from the detector for each cell $i$ is given by $O_{i}$. The set of observations for the whole state is denoted by $\textbf{O}_{t}$ 
+
+\subsubsection{Tracking model}
+
+Let $\textbf{X}_{t}$ be the state of the environment at time \textit{t}.
+\begin{align}
+P(\textbf{X}_{t} | \textbf{O}_{t}) = \dfrac{P(\textbf{O}_{t} | \textbf{X}_{t}) P(\textbf{X}_{t}|\textbf{X}_{t-1})} {P(\textbf{X}_{t-1})}
+\end{align} 
+
+Where, $P(\textbf{O}_{t} | \textbf{X}_{t})$ is the likelihood of the state given all our observations (detector outputs). Computation of this likelihood is best performed by using a learnt model of how the detectors perform for different states.
+
+$P(\textbf{X}_{t}|\textbf{X}_{t-1})$ is the \textit{transition model} which models the evolution of the state variables. For a multi person natural environment, an exact analytical model is intractable. So we choose to ignore this aspect of the environment and attribute it to the uncertainty we have in the state estimation. We assume that people move randomly and that there is an equal probability of motion in any direction. 
+
+In a multi person environment, the state space is extremely complex so as to compute exactly this probability 
+distribution over the states. We use an MCMC based sampling algorithm to approximately compute the belief. In the next section we explain the implementation details of our probabilistic model for person detection and tracking.
+
+
+Although, the detector is a modelled probabilistically, we still need to
+We learn from data, the distribution $P(\textbf{O}|\textbf{X})$ for the detector. Given, the labelled location of the people in a data set, we learn the uncertainity in our observations for all the locations and configurations of the state space.
+\subsubsection{MCMC sampling}
+Markov chain monte carlo is a widely used sampling algorithm for estimation of complex posterior distribution[ref]. It has been gaining popularity in multi-target tracking applications. Compared to traditional particle filters, MCMC based sampling leads to far less sample impoverishment[ref] and thus leads to a much better estimate of the state over time.
+
+The core idea is to generate samples from a markov chain. We then evaluate the samples using a \textit{proposal distribution} and accept or reject the samples based on an \textit{acceptance probability}. The MCMC sampler creates hypothesis of the location of the people in the grids. Each sample is an estimate of the occupancy of all the cells taken collectively. 
+
+In our case, we use the occupancy of the grids as hypothesis. Each cell can either be occupied or not occupied. Initially we start from a random distribution of occupancy. Then we generate samples using the following moves:
+
+1. \textit{Birth-Death proposals}
+We randomly select a cell, and flip the sample state of the cell. If the cell was occupied we generate a proposal which makes the cell unoccupied and vice-versa.
+
+2. \textit{Move proposals}
+In this case, we select an occupied cell and randomly move the occupancy to one of the 8 connected neighbours.
+
+Once the proposal sample is generated, we evaluate the orignal sample and the proposed sample with reference to a proposal distribution. In our case, we use a learnt observation model of the detector output as the proposal distribution. We fold in the detector output $\textbf{O}_{t}$ while evaluating the proposals using the proposal distribution. every proposal is a hypothesis of the state $\textbf{X}_{t}$.
+Evaluating the proposals will give us an acceptance probability. If the acceptance probability is greater than 1 we accept the sample unconditionally. If the acceptance probability is less than 1, we randomly sample from a uniform distribution and then accept or reject the sample if the acceptance probability is greater than the sampled value of uniform distribution. Formally,
+The acceptance probability is computed as:
+\begin{align}
+Acc(x|x^{'}) = \min\Big\lbrace\Big(\dfrac{P(\textbf{O}|x)}{P(\textbf{O}|x^{'})}\Big),1\Big\rbrace
+\end{align}
+Where $x$ is the proposed sample of state \textbf{X}, and $x^{'}$ is the initial sample.
+
+If the sample is accepted, we use the currently proposed sample as the initial sample for the next step of the MCMC sampling. If rejected, we still add the sample to our set of hypothesis, but start sampling again from the old sample.
+
+We successively sample until $N_{s}$ samples are accepted. The threshold for number of accepted samples are set to be 100 in our experiments. Once $N_{s}$ samples are accepted, we collectively represent them as the approximate representation of our multi modal posterior distribution.

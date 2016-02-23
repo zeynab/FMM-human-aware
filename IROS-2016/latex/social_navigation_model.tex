@@ -1,0 +1,59 @@
+\section{Human aware Navigation Model}
+\dv{Sections 3 and 4 can be used to explain our model. First the perception and then the human aware navigation model. Don't spend too much time explaining the background of these methods. Make that brief and explain more on our approaches. It is a bit confusing when you split social path planning and navigation. I feel its better to have it under the same section. We have one Human aware navigation model which could have a subsection for social cost and such and another for navigation(FMM,DWA).}
+Human-aware navigation focuses on the interaction dynamics between humans and robots that occur as a result of navigation~\cite{Kruse2013}. 
+In the literature, we can find several strategies for comfort ranging from appropriate approaching strategy~\cite{Dautenhahn2006}, maintaining appropriate distance~\cite{Takayama2009}, control strategies to avoid being noisy~\cite{Martinson2007} and use of planning for avoiding interference~\cite{Vasquez2012}.
+
+In this work we focus on the principle of proxemics which is the most common in the literature of human-aware navigation, with social costs encoded as costmaps similar to ~\cite{gomez2013social}. The personal space around a human can be defined as the mixture of two Gaussian functions, one for the front and another one for the rear part of the area surrounding the person.
+A Gaussian function $\phi$, centred on $p$ with covariance matrix $\Sigma$, is defined as follows:
+
+\begin{equation}
+\phi(q) = e^{(-\frac{1}{2}(q-p)\Sigma^{-1}(q-p))}
+\end{equation}
+
+$q$ indicates the position of a point and $\Sigma$ is:
+\begin{equation}
+\Sigma = \begin{pmatrix}
+{\sigma}_{x}^2  & 0\\ 
+ 0& {\sigma}_{y}^2 
+\end{pmatrix}
+\end{equation}
+
+${\sigma}_{x}$ and ${\sigma}_{y}$ are used to modulate the shape of the Gaussian and are traditionally chosen in a way to respect the personal space of a person as indicated by the proxemics principle. Getting closer to a person, will cause an increase in the value of the function, and hence the social cost associated to that position will increase.
+
+
+If the center of the costmap, which indicates the position of the person in not deterministically known, the costmap can not correctly model the social costs and hence the social path planning could fail in finding an appropriate socially compliant path. This problem becomes much more critical in real applications where robustness is vital for succeeding under different conditions.
+
+Our goal is to show that the assumption of having perfect information about the state of the human is unrealistic and in real situations when the robot has to deal with uncontrolled environments, the uncertainty in this information can not be ignored. We can think of false negative detections where the robot misses to take on person into consideration, false positive detections where other objects are detected as humans, noisy estimations of position, orientation, velocity of the person, etc. To the best of our knowledge, there does not exit any work on including uncertainty of perception in this problem.
+
+\subsection{Navigation}
+
+Global path planning and local path planning are the main components of an autonomous navigation system.
+We base our navigation method on FMM \cite{ventura2015} for global path planning and DWA~\cite{fox1997dynamic} for obstacle avoidance and more reactive control. However, these planners will be modified to account for social costs and constraints in their planning. 
+
+FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In a constantly changing environment a given plan may no longer be valid over time. So applying FMM continuously is one solution to deal with this dynamicity. However, the frequency of this planning should be reasonable given the computational cost of this global planning method. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing the social costs as virtual obstacles.
+
+In the case of DWA, the method has been modified to include a social component. The inherent reactive nature of this method, given the small window of planning which is required for ensuring collision, may not seem to benefit from human-awareness. However, we believe this is an interesting problem to investigate. We will discuss this in more details in the following section \ref{sec:algorithms}.
+
+\subsection{FMM Based Human-aware Navigation}
+
+Talk about social costmaps.
+Talk about samples of MCMC tracker as position sample.
+\subsubsection{Clustering}
+We cluster the sample to obtain the center of the Gaussian and the $\sigma$ values are adaptively computed.
+Random measurements still get picked and clusters are formed.
+
+\subsubsection*{Kmeans Clustering}
+Number of clusters should be known ahead of time. Not a realistic assumption for environments with multiple people. More accurate and closer to reality based on our simulations and real collected data from the probabilistic tracker.
+
+
+\subsubsection*{Shifted Means Clustering}
+Automatically computes the number of clusters. However, is less accurate. 
+
+\subsubsection{Convolution}
+The conventional 2D Gaussian shape of the social costmap is not longer kept. We compute the convolution of the estimate of the underlying distribution for presence of people in an environment, by the conventional social costmap to get the final social cost for each position of the map.
+No need to know the number of people, more flexible, easier to discard small probabilities that are random measurements.
+
+
+\subsection{DWA with Social Factors}
+Discarding velocity candidates that cause discomfort in social zones due to unsuitable velocities or acceleration.
+Penalize velocity candidates that cause the robot to move closer into the social zones. 
