@@ -40,6 +40,7 @@ distribution over the states. We use an MCMC based sampling algorithm to approxi
 Although, the detector is a modelled probabilistically, we still need to
 We learn from data, the distribution $P(\textbf{O}|\textbf{X})$ for the detector. Given, the labelled location of the people in a data set, we learn the uncertainity in our observations for all the locations and configurations of the state space.
 \subsubsection{MCMC sampling}
+\label{MCMC}
 Markov chain monte carlo is a widely used sampling algorithm for estimation of complex posterior distribution[ref]. It has been gaining popularity in multi-target tracking applications. Compared to traditional particle filters, MCMC based sampling leads to far less sample impoverishment[ref] and thus leads to a much better estimate of the state over time.
 
 The core idea is to generate samples from a markov chain. We then evaluate the samples using a \textit{proposal distribution} and accept or reject the samples based on an \textit{acceptance probability}. The MCMC sampler creates hypothesis of the location of the people in the grids. Each sample is an estimate of the occupancy of all the cells taken collectively. 

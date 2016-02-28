@@ -1,0 +1,8 @@
+\subsection{Navigation}
+
+Global path planning and local path planning are the main components of an autonomous navigation system.
+We base our navigation method on FMM \cite{ventura2015} for global path planning and DWA~\cite{fox1997dynamic} for obstacle avoidance and more reactive control. However, these planners will be modified to account for social costs and constraints in their planning. 
+
+FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In a constantly changing environment a given plan may no longer be valid over time. So applying FMM continuously is one solution to deal with this dynamicity. However, the frequency of this planning should be reasonable given the computational cost of this global planning method. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing the social costs as virtual obstacles.
+
+In the case of DWA, the method has been modified to include a social component. The inherent reactive nature of this method, given the small window of planning which is required for ensuring collision, may not seem to benefit from human-awareness. However, we believe this is an interesting problem to investigate. We will discuss this in more details in the following section \ref{sec:algorithms}.
