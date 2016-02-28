@@ -68,6 +68,28 @@ In each experiment, the robot starts from a predefined starting point and is sen
 
 
 \subsection{Metrics}
+
+Six different metrics have been defined for performance evaluation. We use a subset of these metrics based on the scenario of the experiment.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c l c||} 
+ \hline
+ Name & Description & Scenario \\ [0.5ex] 
+ \hline\hline
+ m1 & Minimum distance to a person & 1,3 \\ 
+ m2 & Time steps spent in areas with social cost & 1,3  \\
+ m3 & Accumulated social cost & 1,3  \\
+ m4 & Smoothness of the trajectory & 1,2,3  \\
+ m4 & Operation time & 1,2,3  \\
+ m6 & Minimum average distance to the people & 3  \\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Performance metrics.}
+\label{table:metrics}
+\end{table}
+
+
 A widely accepted description of the speed profile in neurobiology is based on the ‘minimal jerk criterion’ \cite{burdet1998quantization}.
 
 
