@@ -48,7 +48,8 @@ Finally, we tested our method in reality in three different scenarios, in a labo
 %\end{figure*}
 
 
-People detection and tracking is done by means of an omni-directional overhead camera \zt{Deepak please add the camera information here, model and the rest of the related stuff} with \zt{?} frames per second. The deterministic tracker outputs results with  \zt{?} hz and the probabilistic tracker with  \zt{?} hz.  \zt{maybe a table for everything here}. The ground truth position of the robot is given by AMCL with 5-10 cm accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
+People detection and tracking is done by means of an omni-directional overhead camera \zt{Deepak please add the camera information here, model and the rest of the related stuff} with \zt{?} frames per second. The deterministic tracker outputs results with  \zt{?} \textit{Hz} and the probabilistic tracker with  \zt{?} \textit{Hz}.  \zt{maybe a table for everything here}. The ground truth position of the robot is given by AMCL with 5-10 \textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
+The control rate of navigation is 20 \textit{Hz} while the social costmap generation has a rate of approximately 2.5 \textit{Hz}. This is due to the delay introduced by the tracker for providing position information.
 
 
 \subsection{Scenarios}

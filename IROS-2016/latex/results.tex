@@ -1,9 +1,8 @@
 \section{Results and Discussion}
 %Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
-\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
+%\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
 
-For each of the scenarios described in section \ref{sec:scenarios}, we have compare the results obtained from the 1)basic navigation method, 2)deterministic human-aware navigation, 3)kmeans clustering human-aware navigation, 4)shifted means clustering human-aware navigation, 5)social cost convolution human-aware navigation for both FMM and DWA. 
-Sample results from simulations for the case of static people, are also depicted in Figure ? for comparing the results of our simulations with reality.
+For each of the scenarios described in section \ref{sec:scenarios}, we have compare the results obtained from the 1) basic navigation method, 2) deterministic human-aware navigation, 3) kmeans clustering human-aware navigation, 4) mean shift clustering human-aware navigation, and 5) social cost convolution human-aware navigation. We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
 
 
 
@@ -19,50 +18,65 @@ Figures
 Tables of parameters
 
 
+
 \begin{figure}[t!]
 \centering
-\subfloat[]{\includegraphics[width=0.152\textwidth]{pictures/m1.eps}\label{fig:1}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/m2.eps}\label{fig:2}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/m3.eps}\label{fig:3}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/m4.eps}\label{fig:2}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/m5.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/traj1.eps}\label{fig:traj1}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/traj2.eps}\label{fig:traj2}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/traj3.eps}\label{fig:traj3}}%
+%\hspace{0.1cm}
 
-\caption{Boxplots for the three metrics acquired for STATIC SINGLE PERSON}
-\label{fig:boxplots_singlePerson}
+\caption{Sample robot trajectories for different methods. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}
+\label{fig:trajs}
 \end{figure}
 
-\begin{figure}[t!]
-\centering
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/dy_m4.eps}\label{fig:2}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/dy_m5.eps}\label{fig:3}}%
 
-\caption{Boxplots for the three metrics acquired for STATIC MOVING PERSON}
+\begin{figure*}[t!]
+%\centering
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m1.eps}\label{fig:1}}%
+%\hspace{%0.1cm}
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m2.eps}\label{fig:2}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m3.eps}\label{fig:3}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m4.eps}\label{fig:2}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m5.eps}\label{fig:3}}%
+
+\caption{Performance metrics obtained in the a static person scenario. HA stands for Human-aware in the plot labels.}
+\label{fig:boxplots_singlePerson}
+\end{figure*}
+
+\begin{figure}[!]
+\centering
+\subfloat[]{\includegraphics[width=0.20\textwidth]{pictures/dy_m4.eps}\label{fig:2}}%
+\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/dy_m5.eps}\label{fig:3}}%
+
+\caption{Performance metrics obtained in the a dynamic person scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_singlePersonMov}
 \end{figure}
 
-
-\begin{figure}[t!]
+%
+\begin{figure*}[t!]
 \centering
-\subfloat[]{\includegraphics[width=0.152\textwidth]{pictures/two_m1.eps}\label{fig:1}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/two_m2.eps}\label{fig:2}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/two_m3.eps}\label{fig:3}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/two_m4.eps}\label{fig:2}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/two_m5.eps}\label{fig:3}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.153\textwidth]{pictures/two_m6.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m1.eps}\label{fig:1}}% \vspace{<whatever>}
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m2.eps}\label{fig:2}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m3.eps}\label{fig:3}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m4.eps}\label{fig:2}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m5.eps}\label{fig:3}}%
+%\hspace{0.1cm}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m6.eps}\label{fig:3}}%
 
-\caption{Boxplots for the three metrics acquired for 2 PERSONS STATIC}
+\caption{Performance metrics obtained in the two static people scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_2people}
-\end{figure}
+\end{figure*}
 
 
 \subsection{Discussion}
