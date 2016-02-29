@@ -2,7 +2,7 @@
 %Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
 %\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
 
-For each of the scenarios described in section \ref{sec:scenarios}, we have compare the results obtained from the 1) basic navigation method, 2) deterministic human-aware navigation, 3) kmeans clustering human-aware navigation, 4) mean shift clustering human-aware navigation, and 5) social cost convolution human-aware navigation. We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
+For each of the scenarios described in section \ref{sec:scenarios}, we have compared the results obtained from the 1) basic navigation (BN), 2) deterministic human-aware navigation (DHA) 3) kmeans clustering human-aware navigation (KHA), 4) mean shift clustering human-aware navigation (SHA), and 5) social cost convolution human-aware navigation (CHA). We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
 
 
 
@@ -14,10 +14,11 @@ For each of the scenarios described in section \ref{sec:scenarios}, we have comp
 \subsection{Results}
 \label{sec:results}
 
-Figures
-Tables of parameters
+Sample trajectories of the robot are depicted in Fig. \ref{fig:trajs}. It is clear from the plots that HA methods result in trajectories that preserve larger distances to the people. Additionally, that are smoother and therefore more natural from the point of view of the person, this is supported by \ref{fig:1_4}, \ref{fig:2_2}, and \ref{fig:3_4}. However, this may not be evident from the trajectory plots. This is due to the abrupt movement of non-HA navigation upon encountering a person which affects the smoothness a lot. 
 
+Clustering methods can cause the robot to modify its plan largely by enforcing a certain cluster shape upon finding cluster centroids. So if the new probabilistic data leads to a new centroid that is not very close to the previous one, the costmap could change significantly and therefore the planned path. This is more severe for mean shift clustering due to adaptively modifying the number of clusters as well. This is to be expected given the probabilist nature of the perception data, however the plan can be modified more smoothly using a different approach. The convolution method which outperforms all other methods in terms of smoothness in all our experiments, is shown to be a remedy to this problem. Hence, for the second and third scenario, we only compare the results of 1) BN, 2) DHA, and 3) CHA methods.  
 
+When comparing the results of DHA with CHA we can see that the former is a more conservative method in terms of keeping distance to the people when receiving accurate data. If DHA receives a perfect estimate of the person's position it can lead to the desired path, however this is seldom the case. Particularly, in the case of moving person, the detector could not always keep up with the speed of the moving person and the position estimates were reported with delay or the person was lost in some cases and the robot was faced with the human as obstacle which led to abrupt changes and getting too close \ref{fig:traj2}. However, CHA by associating larger uncertainty to the estimates in this case could lead to better plans in terms of proximity and smoothness. Unfortunately, due to our inaccurate ground truth of the moving person, we only rely on \textit{m4} and \textit{m5} for scenario 2, but we observed the delayed perception and lost person problem during our experiments. 
 
 \begin{figure}[t!]
 \centering
@@ -35,15 +36,15 @@ Tables of parameters
 
 \begin{figure*}[t!]
 %\centering
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m1.eps}\label{fig:1}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m1.eps}\label{fig:1_1}}%
 %\hspace{%0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m2.eps}\label{fig:2}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m2.eps}\label{fig:1_2}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m3.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m3.eps}\label{fig:1_3}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m4.eps}\label{fig:2}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m4.eps}\label{fig:1_4}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m5.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m5.eps}\label{fig:1_5}}%
 
 \caption{Performance metrics obtained in the a static person scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_singlePerson}
@@ -51,45 +52,40 @@ Tables of parameters
 
 \begin{figure}[!]
 \centering
-\subfloat[]{\includegraphics[width=0.20\textwidth]{pictures/dy_m4.eps}\label{fig:2}}%
+\subfloat[]{\includegraphics[width=0.20\textwidth]{pictures/dy_m4.eps}\label{fig:2_2}}%
 \hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/dy_m5.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/dy_m5.eps}\label{fig:2_3}}%
 
-\caption{Performance metrics obtained in the a dynamic person scenario. HA stands for Human-aware in the plot labels.}
+\caption{Performance metrics obtained in the dynamic person scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_singlePersonMov}
 \end{figure}
 
 %
 \begin{figure*}[t!]
 \centering
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m1.eps}\label{fig:1}}% \vspace{<whatever>}
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m1.eps}\label{fig:3_1}}% \vspace{<whatever>}
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m2.eps}\label{fig:2}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m2.eps}\label{fig:3_2}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m3.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m3.eps}\label{fig:3_3}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m4.eps}\label{fig:2}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m4.eps}\label{fig:3_4}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m5.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m5.eps}\label{fig:3_5}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m6.eps}\label{fig:3}}%
+\subfloat[]{\includegraphics[width=0.163\textwidth]{pictures/two_m6.eps}\label{fig:3_6}}%
 
 \caption{Performance metrics obtained in the two static people scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_2people}
 \end{figure*}
 
 
-\subsection{Discussion}
-\label{sec:discussion}
-
-Reasoning about the figures.
-
-We expect to see improvements when applying FMM and more so when considering in uncertainty of perception. Convolution method given its higher flexibility and not requiring the number of people in the scenario is expected to give better results.
-
-DWA cant make a noticeable difference in the trajectories, due to the tendency of the robot to take velocity candidate that are tangent to the planned path and small differences in the new positions of the robot that each candidate will cause. However, it does a good job of discarding velocity candidates that result in uncomfortable accelerations or speeds.
+Figures \ref{fig:boxplots_singlePerson}, \ref{fig:boxplots_singlePersonMov} and \ref{fig:boxplots_2people} show the performance metrics for the three scenarios. We will briefly discuss the results of each metric. $m_{1}$ is has increased for HA methods which shows the effectiveness of our FMM planner in social path planning. However, DHA is more conservative in this regard in the presence of good perception data. $m_{2}$ has increased for uncertainty-based methods in the simple scenario as the deterministic tracker is giving already good position estimates, but this is no longer the case when the complexity is increased as seen in \ref{fig:3_2}. $m_{3}$ is also reduced for HA methods and more so for uncertainty-base HA methods as the complexity of the problem increases \ref{fig:3_3}.
 
 
-keans vs shifted : 
- More accurate and closer to reality based on our simulations and real collected data from the probabilistic tracker.
- 
-remarks:convolution : It is easier to discard small probabilities that are random measurements introduced by the probabilistic MCMC-based tracker, using this representation comparing to clustering methods.
+ $m_{4}$ is showing a very interesting result, we can see how uncertainty-based HA methods have managed to introduce smoothness into the trajectories without deliberately accounting for it and CHA is a clear winner in this case. $m_{5}$ which shows the total navigation time is larger for  KHA and SHA due to constant modifications of the path and taking longer routes. For DHA this metric is comparable to CHA but it increases as the complexity of the environment grows. Lastly, $m_{6}$ which is only used in the third scenario, indicates how DHA has varying behavior (sometimes takes a detour) based on the tracker estimates whereas CHA has more or less the same behavior in our runs due to its probabilistic nature when computing the social costmap.     
+
+
+
+%\subsection{Discussion}
+%\label{sec:discussion}
