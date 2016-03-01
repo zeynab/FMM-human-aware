@@ -2,7 +2,7 @@
 %Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
 %\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
 
-For each of the scenarios described in section \ref{sec:scenarios}, we have compared the results obtained from the 1) basic navigation (BN), 2) deterministic (DHA) 3) Kmeans clustering (KHA), 4) mean shift clustering (SHA), and 5) social cost convolution (CHA) human-aware navigation. We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
+For each of the scenarios described in section \ref{sec:scenarios}, we have compared the results obtained from the 1) basic navigation (BN), 2) deterministic (DHA) 3) Kmeans clustering (KHA), 4) mean shift clustering (SHA), and 5) social cost convolution (CHA) human-aware (HHA) navigation. We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
 
 
 
@@ -14,11 +14,11 @@ For each of the scenarios described in section \ref{sec:scenarios}, we have comp
 \subsection{Results}
 \label{sec:results}
 
-Sample trajectories of the robot are depicted in Fig. \ref{fig:trajs}. It is clear from the plots that HA methods result in trajectories that preserve larger distances to the people. Additionally, that are smoother and therefore more natural from the point of view of the person, this is supported by \ref{fig:1_4}, \ref{fig:2_2}, and \ref{fig:3_4}. However, this may not be evident from the trajectory plots. This is due to the abrupt movement of non-HA navigation upon encountering a person which affects the smoothness a lot. 
+Sample trajectories of the robot are depicted in Fig. \ref{fig:trajs}. It is clear from the plots that HA methods result in trajectories that preserve larger distances to the people. Additionally, they are smoother and therefore more natural from the point of view of a person, this is supported by Fig. \ref{fig:1_4}, \ref{fig:2_2}, and \ref{fig:3_4}. However, this may not be evident from the trajectory plots. This is due to the abrupt movement of non-HA navigation upon encountering a person which affects the smoothness a lot. 
 
-Clustering methods can cause the robot to modify its plan largely by enforcing a certain cluster shape upon finding cluster centroids. So if the new probabilistic data leads to a new centroid that is not very close to the previous one, the costmap could change significantly and therefore the planned path. This is more severe for mean shift clustering due to adaptively modifying the number of clusters as well. This is to be expected given the probabilist nature of the perception data, however the plan can be modified more smoothly using a different approach. The convolution method which outperforms all other methods in terms of smoothness in all our experiments, is shown to be a remedy to this problem. Hence, for the second and third scenario, we only compare the results of 1) BN, 2) DHA, and 3) CHA methods.  
+Clustering methods can cause the robot to modify its plan largely by enforcing a certain cluster shape upon finding cluster centroids. So if the new probabilistic data leads to a new centroid that is not very close to the previous one, the costmap could change significantly and therefore the planned path. This is more severe for mean shift clustering due to adaptively modifying the number of clusters as well. This is to be expected given the probabilistic nature of the perception data, however the plan can be modified more smoothly using a different approach. The convolution method which outperforms all other methods in terms of smoothness in all our experiments, is shown to be a remedy to this problem. Hence, for the second and third scenario, we only compare the results of 1) BN, 2) DHA, and 3) CHA methods.  
 
-When comparing the results of DHA with CHA we can see that the former is a more conservative method in terms of keeping distance to the people when receiving accurate data. If DHA receives a perfect estimate of the person's position it can lead to the desired path, however this is seldom the case. Particularly, in the case of moving person, the detector could not always keep up with the speed of the moving person and the position estimates were reported with delay or the person was lost in some cases and the robot was faced with the human as obstacle which led to abrupt changes and getting too close \ref{fig:traj2}. However, CHA by associating larger uncertainty to the estimates in this case could lead to better plans in terms of proximity and smoothness. Unfortunately, due to our inaccurate ground truth of the moving person, we only rely on \textit{m4} and \textit{m5} for scenario 2, but we observed the delayed perception and lost person problem during our experiments. 
+When comparing the results of DHA with CHA we can see that the former is a more conservative method in terms of keeping distance to the people when receiving accurate data. If DHA receives a perfect estimate of the person's position it can lead to the desired path, however this is seldom the case. Particularly, in the case of moving person, the detector could not always keep up with the speed of the person, i.e., the position estimates were reported with delay or the person was lost in some cases, and the robot was faced with the human while considering him an obstacle. This led to abrupt changes and getting too close to the person \ref{fig:traj2}. However, CHA by associating larger uncertainty to the estimates in this case, could lead to better plans in terms of proximity and smoothness. Unfortunately, due to our inaccurate ground truth of the moving person, we only rely on $m_{4}$ and $m_{5}$ for scenario 2, but we observed the delayed perception and lost person problem during our experiments. 
 
 \begin{figure}[t!]
 \centering
@@ -29,7 +29,7 @@ When comparing the results of DHA with CHA we can see that the former is a more 
 \subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/traj3.eps}\label{fig:traj3}}%
 %\hspace{0.1cm}
 
-\caption{Sample robot trajectories for different methods. Each colored curves indicates a method: green for BN, red for DHA, black for KHA, pink for SHA and blue for CHA. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}
+\caption{Sample robot trajectories for different methods. Color coding: green for BN, red for DHA, black for KHA, pink for SHA and blue for CHA. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}
 \label{fig:trajs}
 \end{figure}
 
@@ -46,15 +46,15 @@ When comparing the results of DHA with CHA we can see that the former is a more 
 %\hspace{0.1cm}
 \subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/m5.eps}\label{fig:1_5}}%
 
-\caption{Performance metrics obtained in the a static person scenario. HA stands for Human-aware in the plot labels.}
+\caption{Performance metrics obtained in the single static person scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_singlePerson}
 \end{figure*}
 
 \begin{figure}[!]
 \centering
-\subfloat[]{\includegraphics[width=0.20\textwidth]{pictures/dy_m4.eps}\label{fig:2_2}}%
+\subfloat[]{\includegraphics[width=0.160\textwidth]{pictures/dy_m4.eps}\label{fig:2_2}}%
 \hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.2\textwidth]{pictures/dy_m5.eps}\label{fig:2_3}}%
+\subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/dy_m5.eps}\label{fig:2_3}}%
 
 \caption{Performance metrics obtained in the dynamic person scenario. HA stands for Human-aware in the plot labels.}
 \label{fig:boxplots_singlePersonMov}
@@ -80,10 +80,10 @@ When comparing the results of DHA with CHA we can see that the former is a more 
 \end{figure*}
 
 
-Figures \ref{fig:boxplots_singlePerson}, \ref{fig:boxplots_singlePersonMov} and \ref{fig:boxplots_2people} show the performance metrics for the three scenarios. We will briefly discuss the results of each metric. $m_{1}$ is has increased for HA methods which shows the effectiveness of our FMM planner in social path planning. However, DHA is more conservative in this regard in the presence of good perception data. $m_{2}$ has increased for uncertainty-based methods in the simple scenario as the deterministic tracker is giving already good position estimates, but this is no longer the case when the complexity is increased as seen in \ref{fig:3_2}. $m_{3}$ is also reduced for HA methods and more so for uncertainty-base HA methods as the complexity of the problem increases \ref{fig:3_3}.
+Figures \ref{fig:boxplots_singlePerson}, \ref{fig:boxplots_singlePersonMov} and \ref{fig:boxplots_2people} show the performance metrics for the three scenarios. We will briefly discuss the results of each metric. $m_{1}$ is has increased for HA methods which shows the effectiveness of our FMM planner in social path planning. However, DHA is more conservative in this regard in the presence of good perception data. $m_{2}$ has increased for uncertainty-based methods in the simple scenario as the deterministic tracker is giving already good position estimates, but this is no longer the case when the complexity is increased as seen in Fig. \ref{fig:3_2}. $m_{3}$ is also reduced for HA methods and more so for uncertainty-based HA methods as the complexity of the problem increases, see Fig.\ref {fig:3_3}.
 
 
- $m_{4}$ is showing a very interesting result, we can see how uncertainty-based HA methods have managed to introduce smoothness into the trajectories without deliberately accounting for it and CHA is a clear winner in this case. $m_{5}$ which shows the total navigation time is larger for  KHA and SHA due to constant modifications of the path and taking longer routes. For DHA this metric is comparable to CHA but it increases as the complexity of the environment grows. Lastly, $m_{6}$ which is only used in the third scenario, indicates how DHA has varying behavior (sometimes takes a detour) based on the tracker estimates whereas CHA has more or less the same behavior in our runs due to its probabilistic nature when computing the social costmap.     
+ $m_{4}$ is showing a very interesting result, we can see how uncertainty-based HA methods have managed to introduce smoothness into the trajectories without deliberately accounting for it, and CHA is a clear winner in this case. $m_{5}$ which shows the total navigation time is larger for KHA and SHA due to constant modifications of the path and taking longer routes. For DHA this metric is comparable to CHA but it increases as the complexity of the environment grows. Lastly, $m_{6}$ which is only used in the third scenario, indicates how DHA has varying behavior (sometimes takes a detour) based on the tracker estimates whereas CHA has more or less the same behavior in our runs due to its probabilistic nature when computing the social costmap.     
 
 
 
