@@ -2,7 +2,7 @@
 %Need to explain the experimental set up here. Omnidirectional camera, monarch platform. And motivating the experiments below. 
 %\dv{Need to identify one or two scenarios where the uncertainity will help us. Like two people standing close by and the robot not going in between them. In the other case with deterministic tracker, the robot should go in between them.}\\
 
-For each of the scenarios described in section \ref{sec:scenarios}, we have compared the results obtained from the 1) basic navigation (BN), 2) deterministic human-aware navigation (DHA) 3) kmeans clustering human-aware navigation (KHA), 4) mean shift clustering human-aware navigation (SHA), and 5) social cost convolution human-aware navigation (CHA). We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
+For each of the scenarios described in section \ref{sec:scenarios}, we have compared the results obtained from the 1) basic navigation (BN), 2) deterministic (DHA) 3) Kmeans clustering (KHA), 4) mean shift clustering (SHA), and 5) social cost convolution (CHA) human-aware navigation. We will only report the trajectories and metrics obtained from the results of our real experiments for the sake of conciseness.
 
 
 
@@ -29,7 +29,7 @@ When comparing the results of DHA with CHA we can see that the former is a more 
 \subfloat[]{\includegraphics[width=0.16\textwidth]{pictures/traj3.eps}\label{fig:traj3}}%
 %\hspace{0.1cm}
 
-\caption{Sample robot trajectories for different methods. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}
+\caption{Sample robot trajectories for different methods. Each colored curves indicates a method: green for BN, red for DHA, black for KHA, pink for SHA and blue for CHA. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}
 \label{fig:trajs}
 \end{figure}
 

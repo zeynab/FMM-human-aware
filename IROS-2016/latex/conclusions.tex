@@ -1,15 +1,13 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-\subsection{Future work}
+In this work we have proposed a novel approach for extending the model of social costmaps to include the uncertainty of perception. Experiments show how this extended model can lead to more natural robot trajectories that preserve a social distance from people. By combining the output of a probabilistic MCMC-based tracker with an expectation costmap computation method based on convolution, we introduce a principled approach to solve the social path planning problem in real environments with multiple people. 
 
+The idea presented in this paper can be extended to other types of perception sources. Different perception sources for person detection and tracking, have different levels of uncertainty and accuracy in their detections. while, there exist trackers able to perform this task with \textit{cm}-level accuracy, others have a much larger uncertainty associated to them. If a human-aware approach, could take this into account, the same planning method could easily be reused even when the source of perception changes. As an example while overhead cameras can provide position information of people with good accuracy, when moving to on-board perception for a mobile robot, this accuracy and the associated uncertainty will largely change. This is even more significant, if tracking is done using an ultra-wide-band (UWB) tag. So, for more robustness and effectiveness, a human-aware navigation method, should be able to handle all these situations without undergoing major changes. By providing probabilistic perception outputs, our proposed model can be used without modification.
 
-Uncertainty-based Human-aware navigation is able to achieve smooth and natural trajectories that preserve social distances, while being comparable in terms of the overall execution time for the navigation task.
-   
-
-modelling the uncertainty in orientation.
+As future steps for this research, we plan on incorporating orientation information and uncertainty of orientation in our model. Additionally, more tests with more accurate ground truth data can help to understand the problem and its challenges better. Additionally, quantifying the uncertainty in perception can be very useful in analyzing the behavior of expectation-based social costmap computation methods.  
 
 
 \section*{Acknowledgements}
 
-Work supported by FP7-ICT-9-2011-601033 (MOnarCH).
+This work has been supported by the European MOnarCH project FP7-ICT-9-2011-601033. 
