@@ -55,12 +55,12 @@ The control rate of navigation is 20 \textit{Hz} while the social costmap genera
 \subsection{Scenarios}
 \label{sec:scenarios}
 
-We have studied three different scenarios, each having been tested five times. We start with 1) a single static person and incrementally increase the complexity to 2) one moving person and finally, 3) two static people in the arena. We should emphasize that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
+We have studied three different scenarios, each having been tested five times. We start with 1) a single static person and incrementally increase the complexity to 2) one moving person and finally, 3) two static people in the arena. it should be emphasized that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
 
 
 Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point to point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task. The complexity of the navigation task can be increased and more interesting scenarios in terms of Human Robot Interaction (HRI) can be investigated, but that is outside the scope of this work. 
 
-In each experiment, the robot starts from a predefined starting point and is sent to one predefined goal. The robot then has to behave appropriately when encountered with people in the arena. For the static case there is always a person standing between the robot and the straight line to the goal, and for the dynamic case the person moves along this line in the opposite direction, as the robot starts navigating towards the goal causing a direct encounter with the robot. The following section will explain the metrics used for performance assessment in our experiments.
+In each experiment, the robot starts from a predefined starting point and is sent to one predefined goal. The robot then has to behave appropriately when encountered with people in the arena. For the static case there is always a person standing between the robot and the straight line to the goal, and for the dynamic case the person moves along this line in the opposite direction, as the robot starts navigating towards the goal causing a direct encounter with the robot. The following section will explain the metrics used for performance assessment.% in our experiments.
 
 %
 %Figure shows a snapshot of the setup with two people moving in the arena. For the case of static people we have also done extensive tests using a high fidelity simulator webots \cite{michel1998webots}, by 1) emulating the uncertainty of tracking, and 2) replaying real uncertainty and tracking data from real experiments. 
@@ -70,7 +70,7 @@ In each experiment, the robot starts from a predefined starting point and is sen
 
 \subsection{Metrics}
 
-Six different metrics have been defined for performance evaluation. A subset of these metrics are chosen for each experiment based on the scenario of interest.% Table \ref{table:metrics} briefly describes each of the metrics and the scenarios they have been used for.
+Six different metrics have been defined for performance evaluation. A subset of these metrics is chosen for each experiment based on the scenario of interest.% Table \ref{table:metrics} briefly describes each of the metrics and the scenarios they have been used for.
 
 
 

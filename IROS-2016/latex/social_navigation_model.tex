@@ -64,7 +64,7 @@ By taking this approach, the conventional 2D Gaussian shape of the social costma
 
 
 \subsubsection*{Clustering}
-Another approach is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty, based on the features of the cluster. Upon receiving the position samples from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the samples and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
+Another approach we propose is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty, based on the features of the cluster. Upon receiving the position samples from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the samples and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
 \paragraph{K-means clustering}
 
 Kmeans clustering \cite{hartigan1979algorithm} method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is knowing K which is the number of clusters and in our case the number of people, ahead of time. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods both in simulation and reality.
@@ -75,7 +75,7 @@ To overcome the limitation of Kmeans clustering method for needing to know the n
 
 \subsubsection{Deterministic Social Costs}
 For the purpose of creating a baseline to compare our proposed model, we have also designed a deterministic model for the social costmap. 
-Here, we use a deterministic output from the tracker, without considering the particles, by just using the mode of the distribution as the deterministic location of the people, along with the conventional costmap model. 
+Here, we use a deterministic output from the tracker, without considering the particles, but just using the mode of the distribution as deterministic location of the people, along with the conventional costmap model. 
 
 
 This is the standard approach that is being used for social path planning in human-aware navigation, where it is assumed that the position and orientation of the person is deterministically known at every time step with no model of uncertainty. Once this information is known, the conventional Gaussian shaped costmap can be used to obtain the social costs. This costmap can be tuned according to the desired parameters. In this paper, we have taken an approach similar to \cite{gomez2013social} with ${\sigma}_{x} = 0.255\ m$, for deterministic costmaps. 
