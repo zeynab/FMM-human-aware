@@ -7,9 +7,9 @@ In this section we will briefly explain our robotic platform, experimental setup
 
 \begin{figure}[t!]
 \centering
-\subfloat[]{\includegraphics[width=0.12\textwidth]{pictures/robot.jpg}\label{fig:robot}}%
-\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.32\textwidth]{pictures/arena.png}\label{fig:arena}}%
+\subfloat[]{\includegraphics[width=0.13\textwidth]{pictures/robot.jpg}\label{fig:robot}}%
+\hspace{0.4cm}
+\subfloat[]{\includegraphics[width=0.3\textwidth]{pictures/arena.png}\label{fig:arena}}%
 \hspace{0.1cm}
 
 \caption{(a) mBot robotic platform. (b) Experimental arena. The robot starts from its initial position and navigates to the end point while dealing with the people in the environment. This is a snapshot of the first step of the single static person case.}
@@ -48,7 +48,7 @@ Finally, we tested our methods in reality in three different scenarios, in a lab
 %\end{figure*}
 
 
-People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. The tracker outputs results at the rate of 3Hz. The ground truth position of the robot is given by AMCL with 5-10 \textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
+People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. The tracker outputs results at the rate of 3 \textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10 \textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
 The control rate of navigation is 20 \textit{Hz} while the social costmap generation has a rate of approximately 2.5 \textit{Hz}. This is to account for the low output frequency of the tracker.
 
 
