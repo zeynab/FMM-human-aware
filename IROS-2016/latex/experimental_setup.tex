@@ -37,7 +37,7 @@ The robot has two PCs inside its shell: one manages the sensors, navigation and 
 \label{sec:Experimental_setup}
 
 
-We have used an extensive suit of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the mBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception, were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
+We have used an extensive suit of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the mBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
 Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5 \textit{m} $\times$ 7 \textit{m}, depicted in Fig. \ref{fig:arena} where the tracker was operational.
  
 %\begin{figure*}[t]
@@ -55,7 +55,7 @@ The control rate of navigation is 20 \textit{Hz} while the social costmap genera
 \subsection{Scenarios}
 \label{sec:scenarios}
 
-We have studied three different scenarios for our human-aware navigation methods, each having been tested five times. We start with 1) a single static person and incrementally increase the complexity to 2) one moving person and finally, 3) two static people in the arena. We should emphasize that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
+We have studied three different scenarios, each having been tested five times. We start with 1) a single static person and incrementally increase the complexity to 2) one moving person and finally, 3) two static people in the arena. We should emphasize that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
 
 
 Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point to point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task. The complexity of the navigation task can be increased and more interesting scenarios in terms of Human Robot Interaction (HRI) can be investigated, but that is outside the scope of this work. 
