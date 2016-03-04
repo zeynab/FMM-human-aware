@@ -51,6 +51,7 @@ In the following, we will go into the details of computing social costs with the
 
 To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of samples are reported at each time step for each person that the tracker detects. In the following, we propose two type of methods for using these particles to create social costmaps.  
 
+
 \subsubsection*{Convolution}
 
 The core idea we propose for incorporating uncertainty in the costmap is to compute an \textit{expectation} based costmap. In other words, we treat the probability map of the presence of people in the environment as a two dimensional signal and convolve it with the conventional Gaussian costmap, to obtain the final probabilistic social costs. By convolving all the samples from the MCMC tracker with the social costmap, we compute an \textit{expected costmap} incorporating all the uncertainty in the environment. This is a principled approach to solve the problem since we are not abstracting away any information provided by the perception system, and hence, in theory this approach should provide us with a costmap model that would be most informative for uncertainty-based human-aware navigation.
