@@ -48,7 +48,7 @@ In the following, we will go into the details of computing social costs with the
 %FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing them as virtual obstacles.
 \subsubsection{Uncertainty-based Social Costs}
 
-To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of samples are reported at each time step for each person that the tracker detects. In the following, we propose two type of methods for using these samples to create social costmaps.  
+To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of samples are reported at each time step for each person that the tracker detects. In the following, we propose two type of methods for using these particles to create social costmaps.  
 
 \subsubsection*{Convolution}
 
@@ -59,18 +59,18 @@ The core idea we propose for incorporating uncertainty in the costmap is to comp
 
 %There are two main steps required for acquiring the final costmap of the environment using this approach. 1) Create a probability map for the presence of people in the environment, 2) by convolving this probability map with the Gaussian-shaped social costmap for an individual person, obtain the final social costmap that contains the social costs related to all the people present in the environment.
    
-By taking this approach, the conventional 2D Gaussian shape of the social costmap is no longer mandatory, thus this costmap model is more flexible. Additionally, there is no need to know the number of people ahead of time as the samples given by tracker are reflecting this (refer to \ref{MCMC}). \dv{add a picture somewhere of how the cost map looks}
+By taking this approach, the conventional 2D Gaussian shape of the social costmap is no longer mandatory, thus this costmap model is more flexible. Additionally, there is no need to know the number of people ahead of time as the samples given by tracker are reflecting this (refer to \ref{MCMC}).% \dv{add a picture somewhere of how the cost map looks}
 
 
 
 \subsubsection*{Clustering}
-Another approach we propose is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty, based on the features of the cluster. Upon receiving the position samples from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the samples and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
+Another approach we propose is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty, based on the features of the cluster. Upon receiving the position samples from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the particles and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
 \paragraph{K-means clustering}
 
 Kmeans clustering \cite{hartigan1979algorithm} method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is knowing K which is the number of clusters and in our case the number of people, ahead of time. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods both in simulation and reality.
 
 \paragraph{Mean shift clustering}
-To overcome the limitation of Kmeans clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the sample set automatically. We used the median of all pairwise distances to estimate the bandwidth of mean shift method.
+To overcome the limitation of Kmeans clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the sample set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
 
 
 \subsubsection{Deterministic Social Costs}
