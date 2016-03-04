@@ -26,7 +26,7 @@ In this section we will briefly explain our robotic platform, experimental setup
 
 
 The robotic platform used in this work is shown in Fig. \ref{fig:robot}. This robot is called mBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
-It is an omni-directional drive robot with an approximately round footprint of 0.65 \textit{m} in diameter and a height of 0.98 \textit{m}.
+It is an omni-directional drive robot with an approximately round footprint of 0.65~\textit{m} in diameter and a height of 0.98~\textit{m}.
 It is provided with two laser range finders, on both the front and the back for providing full coverage.
 
 Two batteries give it an autonomy of approximately five hours, depending on the usage.
@@ -38,7 +38,7 @@ The robot has two PCs inside its shell: one manages the sensors, navigation and 
 
 
 We have used an extensive suit of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the mBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
-Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5 \textit{m} $\times$ 7 \textit{m}, depicted in Fig. \ref{fig:arena} where the tracker was operational.
+Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5~\textit{m}~$\times$~7~\textit{m}, depicted in Fig. \ref{fig:arena} where the tracker was operational.
  
 %\begin{figure*}[t]
 %\centering
@@ -48,8 +48,8 @@ Finally, we tested our methods in reality in three different scenarios, in a lab
 %\end{figure*}
 
 
-People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. The tracker outputs results at the rate of 3 \textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10 \textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
-The control rate of navigation is 20 \textit{Hz} while the social costmap generation has a rate of approximately 2.5 \textit{Hz}. This is to account for the low output frequency of the tracker.
+People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. The tracker outputs results at the rate of 3~\textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10~\textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
+The control rate of navigation is 20~$Hz$ while the social costmap generation has a rate of approximately 3~\textit{Hz}. This is to account for the low output frequency of the tracker.
 
 
 \subsection{Scenarios}
@@ -73,7 +73,6 @@ In each experiment, the robot starts from a predefined starting point and is sen
 Six different metrics have been defined for performance evaluation. A subset of these metrics is chosen for each experiment based on the scenario of interest.% Table \ref{table:metrics} briefly describes each of the metrics and the scenarios they have been used for.
 
 
-
 \begin{itemize}
 
 \item $m_{1}$: Shows the minimum distance that the robot has kept during the experiment to a human. If this distance is not large enough, the robot will be invading the personal space of the person and will therefore cause discomfort. 
@@ -90,7 +89,7 @@ r_{t} = \begin{bmatrix}
 x_{t}\\
 y_{t} 
 
-\end{bmatrix} \, , \, \,  m_{4} = \sqrt{\frac{1}{N} \sum_{t=1}^{N}\left | \dddot{r} \right |^{2}  }
+\end{bmatrix} \, , \, \,  m_{4} = \sqrt{\frac{1}{N} \sum_{t=1}^{N}\left | \dddot{r_{t}} \right |^{2}  }
 \end{equation}
 $r_{t}$ indicates the position of the robot at time $t$, and $N$ indicates the total time of the experiment. It should be emphasized that we did not actively try to modify the robot control to get smoother trajectories, we are just interested to see which method results in a more natural and smooth path.  
 

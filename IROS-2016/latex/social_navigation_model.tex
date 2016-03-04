@@ -2,7 +2,7 @@
 \label{social_nav}
 %\dv{Sections 3 and 4 can be used to explain our model. First the perception and then the human aware navigation model. Don't spend too much time explaining the background of these methods. Make that brief and explain more on our approaches. It is a bit confusing when you split social path planning and navigation. I feel its better to have it under the same section. We have one Human aware navigation model which could have a subsection for social cost and such and another for navigation(FMM,DWA).}
 
-In this section we will briefly explain the navigation component of the system and describe the social cost computations methods that provide the information required for our socially-aware FMM-based path planner.
+In this section we will explain the navigation component of the system and describe the social cost computations methods that provide the information required for our socially-aware FMM-based path planner.
 
 %The model used for achieving human-aware navigation, mainly consists of accounting for social costs in the planners. In this work we focus on modelling social costs based on the proxemics principle, targeted for real robotic applications in the presence of noisy perception. These costs are then used in an FMM-based global planner, resulting in trajectories that respect social considerations.% However, we extend the deterministic model of social costmaps, for taking the uncertainty of perception into account. For this purpose, three different methods have been proposed in combination with a probabilistic tracker, for obtaining uncertainty-based social costs. 
 
@@ -33,6 +33,7 @@ A Gaussian function $\phi$, centred on $p$ with covariance matrix $\Sigma$, is d
 
 $q$ indicates the position of a point and $\Sigma$ is:
 \begin{equation}
+%\scriptsize 
 \Sigma = \begin{pmatrix}
 {\sigma}_{x}^2  & 0\\ 
  0& {\sigma}_{y}^2 
