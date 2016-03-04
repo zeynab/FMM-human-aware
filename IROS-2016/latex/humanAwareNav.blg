@@ -1,7 +1,12 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: humanAwareNav.aux
 The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: papers.bib
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
@@ -9,45 +14,45 @@ Database file #1: papers.bib
 Warning--empty journal in Hall1969
 
 Done.
-You've used 19 entries,
+You've used 29 entries,
             3975 wiz_defined-function locations,
-            909 strings with 10605 characters,
-and the built_in function-call counts, 14947 in all, are:
-= -- 1129
-> -- 346
-< -- 129
-+ -- 200
-- -- 55
-* -- 695
-:= -- 2118
-add.period$ -- 40
-call.type$ -- 19
-change.case$ -- 19
-chr.to.int$ -- 333
-cite$ -- 20
-duplicate$ -- 1063
-empty$ -- 1330
-format.name$ -- 70
-if$ -- 3511
+            967 strings with 12625 characters,
+and the built_in function-call counts, 23344 in all, are:
+= -- 1783
+> -- 566
+< -- 205
++ -- 320
+- -- 93
+* -- 1096
+:= -- 3320
+add.period$ -- 62
+call.type$ -- 29
+change.case$ -- 29
+chr.to.int$ -- 513
+cite$ -- 30
+duplicate$ -- 1657
+empty$ -- 2034
+format.name$ -- 116
+if$ -- 5474
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 179
-newline$ -- 77
-num.names$ -- 19
-pop$ -- 455
+int.to.str$ -- 29
+missing$ -- 283
+newline$ -- 107
+num.names$ -- 29
+pop$ -- 702
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1186
+skip$ -- 1848
 stack$ -- 0
-substring$ -- 796
-swap$ -- 838
-text.length$ -- 18
+substring$ -- 1226
+swap$ -- 1328
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
 warning$ -- 1
-while$ -- 64
-width$ -- 21
-write$ -- 189
+while$ -- 106
+width$ -- 31
+write$ -- 285
 (There was 1 warning)
