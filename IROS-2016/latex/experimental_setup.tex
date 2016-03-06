@@ -8,7 +8,7 @@ In this section we will briefly explain our robotic platform, experimental setup
 \begin{figure}
 \centering
 \includegraphics[width=0.42\textwidth]{pictures/setup.jpg}\label{fig:robot}%
-\caption{Experimental setup schematics and the mBot robotic platform.}
+\caption{Experimental setup schematics and the MBot robotic platform.}
 \label{fig:setup}
 \end{figure}
 
@@ -28,9 +28,9 @@ In this section we will briefly explain our robotic platform, experimental setup
 %\end{figure}
 
 
-The robotic platform used in this work is shown in Fig. \ref{fig:setup}. This robot is called mBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
+The robotic platform used in this work is shown in Fig. \ref{fig:setup}. This robot is called MBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
 It is an omni-directional drive robot with an approximately round footprint of 0.65~\textit{m} in diameter and a height of 0.98~\textit{m}.
-It is provided with two laser range finders, on both the front and the back for providing full coverage.
+It is provided with two laser range finders, on both the front and the back for providing 360$^{\circ}$ coverage.
 
 Two batteries give it an autonomy of approximately five hours, depending on the usage.
 The robot has two PCs inside its shell: one manages the sensors, navigation and actuators, while the second one is for other functions such as human-robot interaction functionalities, which are outside our interests for this work. The two on-board PCs, run Ubuntu desktop 12.04 and ROS Hydro. 
@@ -40,8 +40,9 @@ The robot has two PCs inside its shell: one manages the sensors, navigation and 
 \label{sec:Experimental_setup}
 
 
-We have used an extensive suit of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the mBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
-Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5~\textit{m}~$\times$~7~\textit{m}, depicted in Fig. \ref{fig:arena} where the tracker was operational.
+We have used an extensive suite of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the MBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
+Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5~\textit{m}~$\times$~7~\textit{m}%, depicted in Fig. \ref{fig:arena} 
+~where the tracker was operational.
  
 %\begin{figure*}[t]
 %\centering
@@ -50,7 +51,7 @@ Finally, we tested our methods in reality in three different scenarios, in a lab
 %\label{fig:arena}
 %\end{figure*}
 
-We used a networked omnidirectional overhead camera with a field of view of 180 degrees, to track the positions of the people in the environment. This type of camera was chosen because: (1) it is less obtrusive, and can be left in the environment with less risk of making people feel uncomfortable about being watched; 
+We used a networked omnidirectional overhead camera with a field of view of 180$^{\circ}$, to track the positions of the people in the environment. This type of camera was chosen because: (1) it is less obtrusive, and can be left in the environment with less risk of making people feel uncomfortable about being watched; 
 (2) it provides a global view of the area, with lower risk of occlusion than elevated side-view cameras and with more flexibility as to its positioning; (3) the number of cameras needed in the environment can be reduced, which has benefits in terms of equipment cost, installation cost and computational load of the perception algorithms. 
 
 
@@ -81,28 +82,31 @@ Six different metrics have been defined for performance evaluation. A subset of 
 
 \begin{itemize}[ noitemsep, leftmargin=*]
 
-\item $m_{1}$: Shows the minimum distance that the robot has kept during the experiment to a human.% If this distance is not large enough, the robot will be invading the personal space of the person and will therefore cause discomfort. 
+\item $m_{1}$: Measures the minimum distance that the robot has kept during the experiment to a human.% If this distance is not large enough, the robot will be invading the personal space of the person and will therefore cause discomfort. 
 
 
-\item $m_{2}$: Shows how long the robot has been moving in areas associated with social costs. This means, whenever the robot is in a position with corresponding non-zero value in the costmap this metric will be incremented.
+\item $m_{2}$: Evaluates how long the robot has been moving in areas associated with social costs, \textit{i.e.}, a position with corresponding non-zero value in the costmap.
 
- \item $m_{3}$: Shows the accumulated social cost, this is to differentiate between being in different positions of the social costmap, which is not reflected in $m_{2}$.
- So if the robot is closer to a person, the social cost will be higher and this metric will increase. For more information on $m_{1}-m_{3}$ refer to \cite{talebpour2015board}. 
+\item $m_{3}$: Quantifies the accumulated social cost, this is to differentiate between being in different positions of the social costmap, which is not reflected in $m_{2}$. So if the robot is closer to a person, the social cost will be higher and this metric will increase. For more information on $m_{1}-m_{3}$ refer to \cite{talebpour2015board}. 
 
-\item  $m_{4}$: Shows the smoothness of the robot trajectory. This is important from the human observer's point of view when perceiving the robot motion. Humans are known to prefer motion with minimum jerk \cite{sisbot2010synthesizing}, therefore we took the root mean squared error (RMSE) of the trajectory jerk in $m_{4}$:
+\item  $m_{4}$: Evaluates the smoothness of the robot trajectory. This is important from the human observer's point of view when perceiving the robot motion. Humans are known to prefer motion with minimum jerk \cite{sisbot2010synthesizing}, therefore we took the root mean squared error (RMSE) of the trajectory jerk in $m_{4}$:
 \begin{equation}
 r_{t} = \begin{bmatrix}
 x_{t}\\
 y_{t} 
 
-\end{bmatrix} \, , \, \,  m_{4} = \sqrt{\frac{1}{N} \sum_{t=1}^{N}\left | \dddot{r_{t}} \right |^{2}  }
+\end{bmatrix} \, , \, \,  
+%m_{4} = \sqrt{\frac{1}{N} \sum_{t=1}^{N}\left | \dddot{r_{t}} \right |^{2}  }
+m_{4} = \sqrt{\frac{1}{N} \sum_{t=1}^{N}\left | \frac{\mathrm{d^3} r_{t} }{\mathrm{d^3} t} \right |^{2}  }
 \end{equation}
+
+
 $r_{t}$ indicates the position of the robot at time $t$, and $N$ indicates the total time of the experiment. It should be emphasized that we did not actively try to modify the robot control to get smoother trajectories, we are just interested to see which method results in a more natural and smooth path.  
 
 \item $m_{5}$: Is the total time steps required to finish the navigation task.
 
 
-\item $m_{6}$: Shows the minimum average distance to the people present in the environment. This is interesting since it shows how the robot is choosing to use the space. Does it choose to go through the area between the people or does it prefer to take a tour and increase this minimum average distance?
+\item $m_{6}$: Measures the minimum of the average distance of the robot to all the people present in the environment. This is interesting since it shows how the robot is choosing to use the space. Does it choose to go through the area between the people or does it prefer to take a tour and increase this minimum average distance?
 
 \end{itemize}
 

@@ -12,7 +12,9 @@ In this section we will explain the navigation component of the system and descr
 
 The robot navigation is based on the navigation system used in the MOnarCH project~\cite{monarch2013}, detailed in~\cite{ventura2015}. As input, it uses the pose estimates provided by a standard AMCL self-localization system~\cite{amcl}, given odometry, laser range finder readings, and a static map. The navigation system is based on FMM for motion planning, together with a Dynamic Window Approach (DWA) algorithm for guidance and obstacle avoidance~\cite{fox1997dynamic}. DWA is essentially a maximization (over a discrete set of feasible velocity candidate commands) of an evaluation function translating three guidance goals: (1)~progress towards the goal, (2)~clearance from obstacles, and (3)~absolute speed.
 
-The potential field output by FMM is minima free and yields an optimal path from a given initial to a final goal point. It is optimal in the sense that the integral of a costmap over the path is minimal, given the initial and final points as boundary conditions. The path is the solution of a gradient descend Ordinary Differential Equation (ODE), with the initial point as initial condition. FMM has been used in MOnarCH before, considering solely an increased cost near the obstacles of the static map in its costmap. This keeps the resulting paths away from the obstacles. In this paper a \emph{social} component is added to this costmap as well.% This social costmap is explained in the next section.
+The potential field output by FMM is minima free and yields an optimal path from a given initial to a final goal point. It is optimal in the sense that the integral of a costmap over the path is minimal, given the initial and final points as boundary conditions.
+% The path is the solution of a gradient descend Ordinary Differential Equation (ODE), with the initial point as initial condition.
+~However, we do not explicitly compute a path. Instead, we compute the progress towards the goal directly from the gradient of the potential field. FMM has been used in MOnarCH before, considering solely an increased cost near static map obstacles in its costmap. This keeps the resulting paths away from the obstacles. In this paper a \emph{social} component is added to this costmap as well.% This social costmap is explained in the next section.
 
 FMM and DWA run asynchronously. FMM is activated when either a new goal position is given, or when the costmap changes, and DWA is running in a closed loop with a fixed rate% of 20 \textit{Hz} in our experiments
 , using the last updated potential field from the FMM.
@@ -29,9 +31,9 @@ The personal space around a human can be defined as the mixture of two pseudo-Ga
 A Gaussian function $\phi$, centered on $p$ with covariance matrix $\Sigma$, is defined as follows:
 
 \begin{equation}
-\phi(q) = exp(-\frac{1}{2}(q-p)\Sigma^{-1}(q-p))
-\end{equation}
-
+\phi(q) = exp\begin{Bmatrix}
+-\frac{1}{2}(q-p)\Sigma^{-1}(q-p)
+\end{Bmatrix}\end{equation}
 $q$ indicates the position of a point and $\Sigma$ is:
 \begin{equation}
 %\scriptsize 
@@ -40,13 +42,12 @@ $q$ indicates the position of a point and $\Sigma$ is:
  0& {\sigma}_{y}^2 
 \end{pmatrix}
 \end{equation}
-
 ${\sigma}_{x}$ and ${\sigma}_{y}$ are used to modulate the shape of the Gaussian and are traditionally chosen in a way to respect the personal space of a person as indicated by the proxemics principle. Various factors can influence the size of this area, however ${\sigma}_{x}$ and ${\sigma}_{y}$ are commonly considered to be constant. Getting closer to a person, will cause an increase in the value of this function, and hence the social cost associated to that position will increase.
 
 If the center of the costmap, which indicates the position of the person is not deterministically known, the costmap can not correctly model the social costs and hence the social path planning could fail in finding an appropriate socially compliant path. This problem becomes much more critical in real applications where robustness is vital for succeeding under different conditions. We believe probabilistic social costs can be a remedy to this problem. 
 
 
-In the following, we will go into the details of computing social costs with the particles obtained from the MCMC tracker. Using the concept of layered costmaps similar to \cite{lu2014iros}, an FMM planner uses this information for performing the replanning. It should be emphasized that the proposed methods are planner-independent and applicable as far as the costmap concept is supported. 
+In the following, we will go into the details of computing social costs with the particles obtained from the MCMC tracker. Using the concept of layered costmaps similar to \cite{lu2014iros}, an FMM planner uses this information for performing the replanning.% It should be emphasized that the proposed methods are planner-independent and applicable as far as the costmap concept is supported. 
 %FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing them as virtual obstacles.
 \subsubsection{Uncertainty-based Social Costs}
 
