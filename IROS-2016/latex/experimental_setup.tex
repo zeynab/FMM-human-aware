@@ -5,16 +5,19 @@ In this section we will briefly explain our robotic platform, experimental setup
 \subsection{Robotic Platform}
 \label{sec:robot}
 
-\begin{figure}[t!]
+\begin{figure}
 \centering
-\subfloat[]{\includegraphics[width=0.13\textwidth]{pictures/robot.jpg}\label{fig:robot}}%
-\hspace{0.4cm}
-\subfloat[]{\includegraphics[width=0.3\textwidth]{pictures/arena.png}\label{fig:arena}}%
-\hspace{0.1cm}
-
-\caption{(a) mBot robotic platform. (b) Experimental arena. The robot starts from its initial position and navigates to the end point while dealing with the people in the environment. This is a snapshot of the first step of the single static person case.}
+\includegraphics[width=0.42\textwidth]{pictures/setup.jpg}\label{fig:robot}%
+\caption{Experimental setup schematics and the mBot robotic platform.}
 \label{fig:setup}
 \end{figure}
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.3\textwidth]{pictures/arena.png}\label{fig:arena}%
+%\caption{Experimental arena. The robot starts from its initial position and navigates to the end point while dealing with the people in the environment. This is a snapshot of the first step of the single static person case.}
+%\label{fig:setupArena}
+%\end{figure}
 
 
 %\begin{figure}
@@ -25,7 +28,7 @@ In this section we will briefly explain our robotic platform, experimental setup
 %\end{figure}
 
 
-The robotic platform used in this work is shown in Fig. \ref{fig:robot}. This robot is called mBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
+The robotic platform used in this work is shown in Fig. \ref{fig:setup}. This robot is called mBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
 It is an omni-directional drive robot with an approximately round footprint of 0.65~\textit{m} in diameter and a height of 0.98~\textit{m}.
 It is provided with two laser range finders, on both the front and the back for providing full coverage.
 
@@ -47,20 +50,26 @@ Finally, we tested our methods in reality in three different scenarios, in a lab
 %\label{fig:arena}
 %\end{figure*}
 
+We used a networked omnidirectional overhead camera with a field of view of 180 degrees, to track the positions of the people in the environment. This type of camera was chosen because: (1) it is less obtrusive, and can be left in the environment with less risk of making people feel uncomfortable about being watched; 
+(2) it provides a global view of the area, with lower risk of occlusion than elevated side-view cameras and with more flexibility as to its positioning; (3) the number of cameras needed in the environment can be reduced, which has benefits in terms of equipment cost, installation cost and computational load of the perception algorithms. 
 
-People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. The tracker outputs results at the rate of 3~\textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10~\textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth.
+
+%People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. 
+The tracker outputs results at the rate of 3~\textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10~\textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth for the purpose of performance evaluation.
 The control rate of navigation is 20~$Hz$ while the social costmap generation has a rate of approximately 3~\textit{Hz}. This is to account for the low output frequency of the tracker.
 
 
 \subsection{Scenarios}
 \label{sec:scenarios}
 
-We have studied three different scenarios, each having been tested five times. We start with 1) a single static person and incrementally increase the complexity to 2) one moving person and finally, 3) two static people in the arena. it should be emphasized that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
+We have studied three different scenarios, each having been tested five times. We started with 1) a single static person and incrementally increased the complexity to 2) one moving person and finally, 3) two static people in the arena. It should be emphasized that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
 
 
-Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point to point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task. The complexity of the navigation task can be increased and more interesting scenarios in terms of Human Robot Interaction (HRI) can be investigated, but that is outside the scope of this work. 
+Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point to point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task.
 
-In each experiment, the robot starts from a predefined starting point and is sent to one predefined goal. The robot then has to behave appropriately when encountered with people in the arena. For the static case there is always a person standing between the robot and the straight line to the goal, and for the dynamic case the person moves along this line in the opposite direction, as the robot starts navigating towards the goal, causing a direct encounter with the robot. The following section will explain the metrics used for performance assessment.% in our experiments.
+%The complexity of the navigation task can be increased and more interesting scenarios in terms of Human Robot Interaction (HRI) can be investigated, but that is outside the scope of this work. 
+
+In each experiment, the robot starts from a predefined starting point and is sent to one predefined goal. The robot then has to behave appropriately when it encounters people in the arena. For the static case, there is always a person standing between the robot and the straight line to the goal, and for the dynamic case the person moves along this line in the opposite direction, as the robot starts navigating towards the goal, causing a direct encounter with the robot. The following section will explain the metrics used for performance assessment.% in our experiments.
 
 %
 %Figure shows a snapshot of the setup with two people moving in the arena. For the case of static people we have also done extensive tests using a high fidelity simulator webots \cite{michel1998webots}, by 1) emulating the uncertainty of tracking, and 2) replaying real uncertainty and tracking data from real experiments. 
@@ -72,7 +81,7 @@ Six different metrics have been defined for performance evaluation. A subset of 
 
 \begin{itemize}[ noitemsep, leftmargin=*]
 
-\item $m_{1}$: Shows the minimum distance that the robot has kept during the experiment to a human. If this distance is not large enough, the robot will be invading the personal space of the person and will therefore cause discomfort. 
+\item $m_{1}$: Shows the minimum distance that the robot has kept during the experiment to a human.% If this distance is not large enough, the robot will be invading the personal space of the person and will therefore cause discomfort. 
 
 
 \item $m_{2}$: Shows how long the robot has been moving in areas associated with social costs. This means, whenever the robot is in a position with corresponding non-zero value in the costmap this metric will be incremented.

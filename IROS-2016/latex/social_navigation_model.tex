@@ -10,11 +10,12 @@ In this section we will explain the navigation component of the system and descr
 
 \subsection{Navigation Framework}
 
-The robot navigation is based on the navigation system used in the MOnarCH project~\cite{monarch2013}, detailed in~\cite{ventura2015}. As input it uses the pose estimates provided by a standard AMCL self-localization system~\cite{amcl}, given odometry, laser range finder readings, and a static map. The navigation system is based on FMM for motion planning, together with a Dynamic Window Approach (DWA) algorithm for guidance and obstacle avoidance~\cite{fox1997dynamic}. The DWA algorithm is essentially a maximization, over a discrete set of feasible velocity candidate commands, of an evaluation function translating three guidance goals: (1)~progress towards the goal, (2)~clearance from obstacles, and (3)~absolute speed.
+The robot navigation is based on the navigation system used in the MOnarCH project~\cite{monarch2013}, detailed in~\cite{ventura2015}. As input, it uses the pose estimates provided by a standard AMCL self-localization system~\cite{amcl}, given odometry, laser range finder readings, and a static map. The navigation system is based on FMM for motion planning, together with a Dynamic Window Approach (DWA) algorithm for guidance and obstacle avoidance~\cite{fox1997dynamic}. DWA is essentially a maximization (over a discrete set of feasible velocity candidate commands) of an evaluation function translating three guidance goals: (1)~progress towards the goal, (2)~clearance from obstacles, and (3)~absolute speed.
 
 The potential field output by FMM is minima free and yields an optimal path from a given initial to a final goal point. It is optimal in the sense that the integral of a costmap over the path is minimal, given the initial and final points as boundary conditions. The path is the solution of a gradient descend Ordinary Differential Equation (ODE), with the initial point as initial condition. FMM has been used in MOnarCH before, considering solely an increased cost near the obstacles of the static map in its costmap. This keeps the resulting paths away from the obstacles. In this paper a \emph{social} component is added to this costmap as well.% This social costmap is explained in the next section.
 
-FMM and DWA run asynchronously. FMM is activated when either a new goal position is given, or when the costmap changes, and DWA is running in a closed loop with a fixed rate of 20 \textit{Hz} in our experiments, using the last updated potential field from the FMM.
+FMM and DWA run asynchronously. FMM is activated when either a new goal position is given, or when the costmap changes, and DWA is running in a closed loop with a fixed rate% of 20 \textit{Hz} in our experiments
+, using the last updated potential field from the FMM.
 
 %Navigation in this context is understood as the capability of a robot to move autonomously in the environment with the goal of reaching a pre-specified final pose. The time taken by the robot to execute this task should be minimal, while avoiding collisions with obstacles as well as maintaining a certain clearance to them. In this paper we take the classical approach of dividing navigation into self-localization and guidance, assuming knowledge of a map of the environment. We also assume that unmapped static or moving obstacles may appear in the environment, while the robot is expected to deal with them in an appropriate way. We further assume an existing self-localization system (AMCL \cite{amcl}), based on data fusion of odometry and range sensor matching with the map. 
 
@@ -25,7 +26,7 @@ FMM and DWA run asynchronously. FMM is activated when either a new goal position
 
 %\dv{rewrite this in a way that we dont model orientation, but people do that too and its a possible but not mandatory part of our work.}
 The personal space around a human can be defined as the mixture of two pseudo-Gaussian functions, one for the front and another one for the rear part of the area surrounding the person. The orientation and heading of the person will cause a corresponding rotation in these functions in such a way that the person is always in the center and the absolute orientation of the person matches that of the Gaussian functions. 
-A Gaussian function $\phi$, centred on $p$ with covariance matrix $\Sigma$, is defined as follows:
+A Gaussian function $\phi$, centered on $p$ with covariance matrix $\Sigma$, is defined as follows:
 
 \begin{equation}
 \phi(q) = exp(-\frac{1}{2}(q-p)\Sigma^{-1}(q-p))
@@ -45,14 +46,15 @@ ${\sigma}_{x}$ and ${\sigma}_{y}$ are used to modulate the shape of the Gaussian
 If the center of the costmap, which indicates the position of the person is not deterministically known, the costmap can not correctly model the social costs and hence the social path planning could fail in finding an appropriate socially compliant path. This problem becomes much more critical in real applications where robustness is vital for succeeding under different conditions. We believe probabilistic social costs can be a remedy to this problem. 
 
 
-In the following, we will go into the details of computing social costs with the particles obtained from the MCMC tracker. Using the concept of layered costmaps similar to \cite{lu2014iros}, an FMM planner uses this information for performing the replanning. 
+In the following, we will go into the details of computing social costs with the particles obtained from the MCMC tracker. Using the concept of layered costmaps similar to \cite{lu2014iros}, an FMM planner uses this information for performing the replanning. It should be emphasized that the proposed methods are planner-independent and applicable as far as the costmap concept is supported. 
 %FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing them as virtual obstacles.
 \subsubsection{Uncertainty-based Social Costs}
 
-To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of samples are reported at each time step for each person that the tracker detects. In the following, we propose two type of methods for using these particles to create social costmaps.  
+%To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that 
+The MCMC-based tracker provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of joint samples are reported at each time step, containing a set of particles for each person that the tracker detects. In the following, we propose two types of methods for using the particles given by these samples, to create social costmaps.  
 
 
-\subsubsection*{Convolution}
+\subsubsection*{\normalfont \textbf{Convolution}}
 
 The core idea we propose for incorporating uncertainty in the costmap is to compute an \textit{expectation} based costmap. In other words, we treat the probability map of the presence of people in the environment as a two dimensional signal and convolve it with the conventional Gaussian costmap, to obtain the final probabilistic social costs. By convolving all the samples from the MCMC tracker with the social costmap, we compute an \textit{expected costmap} incorporating all the uncertainty in the environment. This is a principled approach to solve the problem since we are not abstracting away any information provided by the perception system, and hence, in theory this approach should provide us with a costmap model that would be most informative for uncertainty-based human-aware navigation.
 
@@ -65,14 +67,14 @@ By taking this approach, the conventional 2D Gaussian shape of the social costma
 
 
 
-\subsubsection*{Clustering}
+\subsubsection*{\normalfont \textbf{Clustering}}
 Another approach we propose is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty, based on the features of the cluster. Upon receiving the position samples from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the particles and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
 \paragraph{K-means clustering}
 
-Kmeans clustering \cite{hartigan1979algorithm} method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is knowing K which is the number of clusters and in our case the number of people, ahead of time. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods both in simulation and reality.
+K-means clustering \cite{hartigan1979algorithm} method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is knowing K which is the number of clusters and in our case the number of people, ahead of time. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods both in simulation and reality.
 
 \paragraph{Mean shift clustering}
-To overcome the limitation of Kmeans clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the sample set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
+To overcome the limitation of K-means clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the sample set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
 
 
 \subsubsection{Deterministic Social Costs}
