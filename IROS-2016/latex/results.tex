@@ -8,7 +8,7 @@ For each of the scenarios described in section \ref{sec:scenarios}, we have comp
 
 \begin{figure}
 \centering
-{\includegraphics[width=0.42\textwidth]{pictures/all.eps}\label{fig:costmapPic}}%
+{\includegraphics[width=0.4\textwidth]{pictures/all.eps}\label{fig:costmapPic}}%
 
 \caption{Sample costmap shapes. Top right: standard 2D Gaussian, top left: Convolution method, bottom right: mean shift and bottom left: K-means.}
 \label{fig:costmapPic}
@@ -55,7 +55,7 @@ Figure \ref{fig:costmapPic} shows sample costmaps of the different methods menti
 
 Sample trajectories of the robot are depicted in Fig. \ref{fig:trajs}. It is clear from the plots that HA methods result in trajectories that preserve larger distances to the people. Additionally, they are smoother and therefore more natural from the point of view of a person, this is supported by Fig. \ref{fig:1_4}, \ref{fig:2_2}, and \ref{fig:3_4}. However, this may not be evident from the trajectory plots. This is due to the abrupt movement of non-HA navigation upon encountering a person which considerably affects the smoothness. 
 
-Clustering methods can cause the robot to modify its plan largely by enforcing a certain cluster shape upon finding cluster centroids: if the new probabilistic data leads to a new centroid that is not very close to the previous one, the costmap could change significantly and therefore the planned path. This is more severe for mean shift clustering due to adaptively modifying the number of clusters as well. This is to be expected given the probabilistic nature of the perception data, however the plan can be modified more smoothly using the convolution method. This method which outperforms all other methods in terms of smoothness in all of our tests, is shown to be a remedy to this problem based on our experimental results. Hence, for the second and third scenario, we only compare the results of 1) BN, 2) DHA, and 3) CHA methods.  
+Clustering methods can cause the robot to modify its plan largely by enforcing a certain cluster shape upon finding cluster centroids: if the new probabilistic data leads to a new centroid that is not very close to the previous one, the costmap could change significantly and therefore the planned path. This is more severe for mean shift clustering due to adaptively modifying the number of clusters as well. This is to be expected given the probabilistic nature of the perception data, however the plan can be modified more smoothly using the convolution method. This method which outperforms all other methods in terms of smoothness in all of our tests, is shown to be a remedy to this problem based on our experimental results. Hence, for the second and third scenario, we only compare the results of BN, DHA, and CHA methods.  
 
 When comparing the results of DHA with CHA we can see that the former is a more conservative method in terms of keeping distance to the people when receiving accurate data. If DHA receives a perfect estimate of the person's position it can lead to the desired path, however this is seldom the case. Particularly, in the case of a moving person, the detector could not always keep up with the speed of the person, \textit{i.e.}, the position estimates were reported with delay or the person was lost in some cases, and the robot was faced with the human while considering him an obstacle. This led to abrupt changes and getting too close to the person, see Fig.~\ref{fig:traj2}. However, CHA by associating larger uncertainty to the estimates in this case, could lead to better plans in terms of proximity and smoothness. Unfortunately, due to our inaccurate ground truth of the moving person, we only rely on $m_{4}$ and $m_{5}$ for scenario 2, but we observed the delayed perception and lost person problem during our experiments. 
 
@@ -76,16 +76,16 @@ When comparing the results of DHA with CHA we can see that the former is a more 
 %
 \begin{figure}[t!]
 \centering
-\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m1.eps}\label{fig:3_1}}% \vspace{<whatever>}
+\subfloat[]{\includegraphics[width=0.162\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m1.eps}\label{fig:3_1}}% \vspace{<whatever>}
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m2.eps}\label{fig:3_2}}%
+\subfloat[]{\includegraphics[width=0.162\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m2.eps}\label{fig:3_2}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m3.eps}\label{fig:3_3}}%
+\subfloat[]{\includegraphics[width=0.162\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m3.eps}\label{fig:3_3}}%
 
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m4.eps}\label{fig:3_4}}%
+\subfloat[]{\includegraphics[width=0.162\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m4.eps}\label{fig:3_4}}%
 %\hspace{0.1cm}
-\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m5.eps}\label{fig:3_5}}%
+\subfloat[]{\includegraphics[width=0.162\textwidth, trim= 2mm 13mm 2mm 9mm, clip ]{pictures/two_m5.eps}\label{fig:3_5}}%
 %\hspace{0.1cm}
 %\subfloat[]{\includegraphics[width=0.163\textwidth, trim= 2mm 13mm 2mm 8mm, clip ]{pictures/two_m6.eps}\label{fig:3_6}}%
 
