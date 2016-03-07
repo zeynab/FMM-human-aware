@@ -69,6 +69,11 @@ R.~Kirby, R.~Simmons, and J.~Forlizzi, ``Companion: A constraint-optimizing
 J.~A. Sethian, ``Fast marching methods,'' \emph{SIAM review}, vol.~41, no.~2,
   pp. 199--235, 1999.
 
+\bibitem{lu2014iros}
+D.~V. Lu, D.~Hershberger, and W.~D. Smart, ``Layered {C}ostmaps for
+  {C}ontext-{S}ensitive {N}avigation,'' in \emph{Proceedings of the {IEEE/RSJ}
+  International Conference on Intelligent Robots and Systems ({IROS})}, 2014.
+
 \bibitem{Dautenhahn2006}
 K.~Dautenhahn, M.~Walters, S.~Woods, K.~L. Koay, and C.~L. Nehaniv, ``How may i
   serve you?: a robot companion approaching a seated person in a helping
@@ -112,6 +117,10 @@ J.~Correa~Villanueva, ``Uncertainty and social considerations for mobile
   assistive robot navigation,'' Ph.D. dissertation, Imperial College London,
   2014.
 
+\bibitem{englebienne-bnaic}
+G.~Englebienne and B.~Kröse, ``Fast bayesian people detection,'' in
+  \emph{Proceedings of the 22nd benelux AI conference}, 2010.
+
 \bibitem{khan2004mcmc}
 Z.~Khan, T.~Balch, and F.~Dellaert, ``An mcmc-based particle filter for
   tracking multiple interacting targets,'' in \emph{Computer
@@ -131,11 +140,6 @@ D.~Fox, ``Kld-sampling: Adaptive particle filters,'' in \emph{Advances in
 D.~Fox, W.~Burgard, and S.~Thrun, ``The dynamic window approach to collision
   avoidance,'' \emph{IEEE Robotics \& Automation Magazine}, vol.~4, no.~1, pp.
   23--33, 1997.
-
-\bibitem{lu2014iros}
-D.~V. Lu, D.~Hershberger, and W.~D. Smart, ``Layered {C}ostmaps for
-  {C}ontext-{S}ensitive {N}avigation,'' in \emph{Proceedings of the {IEEE/RSJ}
-  International Conference on Intelligent Robots and Systems ({IROS})}, 2014.
 
 \bibitem{hartigan1979algorithm}
 J.~A. Hartigan and M.~A. Wong, ``Algorithm as 136: A k-means clustering
