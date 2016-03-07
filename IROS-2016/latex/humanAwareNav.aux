@@ -6,6 +6,7 @@
 \citation{dautenhahn2006may}
 \citation{kirby2009companion}
 \citation{sethian1999fast}
+\citation{lu2014iros}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \citation{Kruse2013}
 \citation{Dautenhahn2006}
@@ -19,22 +20,20 @@
 \citation{valero2013fast}
 \citation{correa2014uncertainty}
 \citation{correa2014uncertainty}
-\citation{englebienne-bnaic}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}}
 \newlabel{Literature}{{II}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}perception model}{2}}
 \newlabel{perception_model}{{III}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Probabilistic model}{2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {III-A.1}Detector}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Detector}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-B}State representation}{2}}
 \citation{khan2004mcmc}
 \citation{monarch2013}
 \citation{ventura2015}
 \citation{amcl}
 \citation{fox1997dynamic}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {III-A.2}State representation}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {III-A.3}Tracking model}{3}}
-\newlabel{MCMC}{{III-A.4}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {III-A.4}MCMC sampling}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-C}Tracking model}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-D}MCMC sampling}{3}}
+\newlabel{MCMC}{{III-D}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Human aware Navigation Model}{3}}
 \newlabel{social_nav}{{IV}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Navigation Framework}{3}}
@@ -45,18 +44,13 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {IV-B.1}Uncertainty-based Social Costs}{4}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {IV-B.1.a}K-means clustering}{4}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {IV-B.1.b}Mean shift clustering}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {IV-B.2}Deterministic Social Costs}{4}}
 \citation{gomez2013social}
 \citation{Messias2014robotic}
 \citation{michel1998webots}
-\newlabel{fig:robot}{{1a}{5}}
-\newlabel{sub@fig:robot}{{(a)}{a}}
-\newlabel{fig:arena}{{1b}{5}}
-\newlabel{sub@fig:arena}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces (a) mBot robotic platform. (b) Experimental arena. The robot starts from its initial position and navigates to the end point while dealing with the people in the environment. This is a snapshot of the first step of the single static person case.}}{5}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{5}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{5}}
+\newlabel{fig:robot}{{V-A}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Experimental setup schematics and the MBot robotic platform.}}{5}}
 \newlabel{fig:setup}{{1}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {IV-B.2}Deterministic Social Costs}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experiments}{5}}
 \newlabel{exp}{{V}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-A}Robotic Platform}{5}}
@@ -65,57 +59,76 @@
 \newlabel{sec:Experimental_setup}{{V-B}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-C}Scenarios}{5}}
 \newlabel{sec:scenarios}{{V-C}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-D}Metrics}{5}}
 \citation{talebpour2015board}
 \citation{sisbot2010synthesizing}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-D}Metrics}{6}}
+\newlabel{fig:costmapPic}{{VI}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sample costmap shapes. Top right: standard 2D Gaussian, top left: Convolution method, bottom right: mean shift and bottom left: K-means.}}{6}}
+\newlabel{fig:costmapPic}{{2}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Results and Discussion}{6}}
 \newlabel{res}{{VI}{6}}
+\newlabel{fig:traj1}{{3a}{6}}
+\newlabel{sub@fig:traj1}{{(a)}{a}}
+\newlabel{fig:traj2}{{3b}{6}}
+\newlabel{sub@fig:traj2}{{(b)}{b}}
+\newlabel{fig:traj3}{{3c}{6}}
+\newlabel{sub@fig:traj3}{{(c)}{c}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Sample robot trajectories for different methods. Color coding: green for BN, red for DHA, black for KHA, pink for SHA and blue for CHA. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people. }}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{6}}
+\newlabel{fig:trajs}{{3}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}Results}{6}}
 \newlabel{sec:results}{{VI-A}{6}}
-\bibstyle{IEEEtran}
-\bibdata{papers}
-\bibcite{Althaus2004}{1}
-\bibcite{Kruse2013}{2}
-\newlabel{fig:1_1}{{3a}{7}}
+\newlabel{fig:1_1}{{4a}{7}}
 \newlabel{sub@fig:1_1}{{(a)}{a}}
-\newlabel{fig:1_2}{{3b}{7}}
+\newlabel{fig:1_2}{{4b}{7}}
 \newlabel{sub@fig:1_2}{{(b)}{b}}
-\newlabel{fig:1_3}{{3c}{7}}
+\newlabel{fig:1_3}{{4c}{7}}
 \newlabel{sub@fig:1_3}{{(c)}{c}}
-\newlabel{fig:1_4}{{3d}{7}}
+\newlabel{fig:1_4}{{4d}{7}}
 \newlabel{sub@fig:1_4}{{(d)}{d}}
-\newlabel{fig:1_5}{{3e}{7}}
+\newlabel{fig:1_5}{{4e}{7}}
 \newlabel{sub@fig:1_5}{{(e)}{e}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance metrics obtained in the single static person scenario. HA stands for Human-Aware in the plot labels. }}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance metrics obtained in the single static person scenario. HA stands for Human-Aware in the plot labels. }}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{7}}
-\newlabel{fig:boxplots_singlePerson}{{3}{7}}
-\newlabel{fig:3_1}{{5a}{7}}
+\newlabel{fig:boxplots_singlePerson}{{4}{7}}
+\newlabel{fig:2_2}{{5a}{7}}
+\newlabel{sub@fig:2_2}{{(a)}{a}}
+\newlabel{fig:2_3}{{5b}{7}}
+\newlabel{sub@fig:2_3}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Performance metrics obtained in the dynamic person scenario. }}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{7}}
+\newlabel{fig:boxplots_singlePersonMov}{{5}{7}}
+\newlabel{fig:3_1}{{6a}{7}}
 \newlabel{sub@fig:3_1}{{(a)}{a}}
-\newlabel{fig:3_2}{{5b}{7}}
+\newlabel{fig:3_2}{{6b}{7}}
 \newlabel{sub@fig:3_2}{{(b)}{b}}
-\newlabel{fig:3_3}{{5c}{7}}
+\newlabel{fig:3_3}{{6c}{7}}
 \newlabel{sub@fig:3_3}{{(c)}{c}}
-\newlabel{fig:3_4}{{5d}{7}}
+\newlabel{fig:3_4}{{6d}{7}}
 \newlabel{sub@fig:3_4}{{(d)}{d}}
-\newlabel{fig:3_5}{{5e}{7}}
+\newlabel{fig:3_5}{{6e}{7}}
 \newlabel{sub@fig:3_5}{{(e)}{e}}
-\newlabel{fig:3_6}{{5f}{7}}
+\newlabel{fig:3_6}{{6f}{7}}
 \newlabel{sub@fig:3_6}{{(f)}{f}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Performance metrics obtained in the two static people scenario. }}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Performance metrics obtained in the two static people scenario. }}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{7}}
-\newlabel{fig:boxplots_2people}{{5}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion}{7}}
-\newlabel{sec:conclusion}{{VII}{7}}
-\@writefile{toc}{\contentsline {section}{References}{7}}
+\newlabel{fig:boxplots_2people}{{6}{7}}
+\bibstyle{IEEEtran}
+\bibdata{papers}
+\bibcite{Althaus2004}{1}
+\bibcite{Kruse2013}{2}
 \bibcite{Mumm2011}{3}
 \bibcite{Takayama2009}{4}
 \bibcite{Walters2011}{5}
@@ -143,22 +156,6 @@
 \bibcite{michel1998webots}{27}
 \bibcite{talebpour2015board}{28}
 \bibcite{sisbot2010synthesizing}{29}
-\newlabel{fig:traj1}{{2a}{8}}
-\newlabel{sub@fig:traj1}{{(a)}{a}}
-\newlabel{fig:traj2}{{2b}{8}}
-\newlabel{sub@fig:traj2}{{(b)}{b}}
-\newlabel{fig:traj3}{{2c}{8}}
-\newlabel{sub@fig:traj3}{{(c)}{c}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sample robot trajectories for different methods. Color coding: green for BN, red for DHA, black for KHA, pink for SHA and blue for CHA. Scenarios: (a) Single static person. (b) Single dynamic person. The person starts moving from the end point to the starting point of the robot's trajectory indicated by labels on the plots. (c) Two static people.}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{8}}
-\newlabel{fig:trajs}{{2}{8}}
-\newlabel{fig:2_2}{{4a}{8}}
-\newlabel{sub@fig:2_2}{{(a)}{a}}
-\newlabel{fig:2_3}{{4b}{8}}
-\newlabel{sub@fig:2_3}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance metrics obtained in the dynamic person scenario. }}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{8}}
-\newlabel{fig:boxplots_singlePersonMov}{{4}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion and future work}{8}}
+\newlabel{sec:conclusion}{{VII}{8}}
+\@writefile{toc}{\contentsline {section}{References}{8}}
