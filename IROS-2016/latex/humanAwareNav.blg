@@ -14,45 +14,45 @@ Database file #1: papers.bib
 Warning--empty journal in Hall1969
 
 Done.
-You've used 29 entries,
+You've used 30 entries,
             3975 wiz_defined-function locations,
-            967 strings with 12625 characters,
-and the built_in function-call counts, 23344 in all, are:
-= -- 1783
-> -- 566
+            971 strings with 12749 characters,
+and the built_in function-call counts, 23797 in all, are:
+= -- 1814
+> -- 575
 < -- 205
-+ -- 320
-- -- 93
-* -- 1096
-:= -- 3320
-add.period$ -- 62
-call.type$ -- 29
-change.case$ -- 29
++ -- 324
+- -- 95
+* -- 1115
+:= -- 3393
+add.period$ -- 64
+call.type$ -- 30
+change.case$ -- 30
 chr.to.int$ -- 513
-cite$ -- 30
-duplicate$ -- 1657
-empty$ -- 2034
-format.name$ -- 116
-if$ -- 5474
+cite$ -- 31
+duplicate$ -- 1697
+empty$ -- 2090
+format.name$ -- 119
+if$ -- 5579
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 283
-newline$ -- 107
-num.names$ -- 29
-pop$ -- 702
+int.to.str$ -- 30
+missing$ -- 291
+newline$ -- 110
+num.names$ -- 30
+pop$ -- 725
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1848
+skip$ -- 1887
 stack$ -- 0
-substring$ -- 1226
-swap$ -- 1328
+substring$ -- 1227
+swap$ -- 1348
 text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
 warning$ -- 1
-while$ -- 106
-width$ -- 31
-write$ -- 285
+while$ -- 107
+width$ -- 32
+write$ -- 293
 (There was 1 warning)

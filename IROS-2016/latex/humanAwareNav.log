@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2016.3.1)  7 MAR 2016 11:10
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2016.3.1)  7 MAR 2016 11:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,6 +898,9 @@ tures/two_m2-eps-converted-to.pdf> <./pictures/two_m3-eps-converted-to.pdf> <./
 pictures/two_m4-eps-converted-to.pdf> <./pictures/two_m5-eps-converted-to.pdf> 
 <./pictures/two_m6-eps-converted-to.pdf>]) (./conclusions.tex) (./humanAwareNav
 .bbl
+Missing character: There is no Ã in font ptmr7t!
+Missing character: There is no ¶ in font ptmr7t!
+
 [8])
 
 ** Conference Paper **
@@ -918,10 +921,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6436 strings out of 493493
- 100224 string characters out of 3143798
- 192698 words of memory out of 3000000
- 9316 multiletter control sequences out of 15000+200000
+ 6437 strings out of 493493
+ 100243 string characters out of 3143798
+ 193702 words of memory out of 3000000
+ 9317 multiletter control sequences out of 15000+200000
  80611 words of font info for 316 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,12n,46p,1180b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -937,7 +940,7 @@ ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on humanAwareNav.pdf (9 pages, 318738 bytes).
+Output written on humanAwareNav.pdf (9 pages, 318882 bytes).
 PDF statistics:
  236 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
