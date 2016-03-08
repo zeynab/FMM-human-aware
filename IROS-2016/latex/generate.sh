@@ -1,1 +1,0 @@
-latex icra2015_ocba; bibtex icra2015_ocba; latex icra2015_ocba ; latex icra2015_ocba ; dvips -o icra2015_ocba.ps -t letterSize icra2015_ocba.dvi ; ps2pdf icra2015_ocba.ps icra2015_ocba.pdf 
