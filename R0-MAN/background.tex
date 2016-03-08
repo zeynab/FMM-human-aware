@@ -1,0 +1,24 @@
+\section{Background}
+\label{Literature}
+%In this research we are introduce a novel social path planning approach based on the fast marching method (FMM)~\cite{sethian1999fast}. 
+%\dv{Place our work. Use this section as a narrative to place our work among the available works on human aware navigation. By the end of this section it should be clear how and why our work is relavant. Coarse overview :Broadly summarize the works on human aware navigation historically. Then come to introducing FMM and its use in human aware navigation. One para about local planning (DWA) and its applicability in human aware navigation. One para about people tracking works and probabilsitc model.}
+
+
+Human-aware navigation focuses on the interaction dynamics between humans and robots that occur as a result of navigation~\cite{Kruse2013}. 
+In the literature, we can find several strategies for comfort ranging from appropriate approaching strategy~\cite{Dautenhahn2006}, maintaining appropriate distance~\cite{Takayama2009}, control strategies to avoid noisiness~\cite{Martinson2007} and use of planning for avoiding interference~\cite{Vasquez2012}. In this work we focus on the principle of proxemics which is the most common in the literature of human-aware navigation, with social costs encoded as costmaps similar to~\cite{gomez2013social} along with an FMM-based path planner.
+
+
+
+FMM has been proven to be successful in real domestic spaces with high complexity\cite{ventura2015}. There have previously been a number of research papers addressing social path planning~\cite{gomez2014fast,gomez2013social} using FMM. %However, we add a social component to the aforementioned method by augmenting it with social costmaps \textemdash based on proxemics principles~\cite{kirby2009companion}\textemdash~ around individual people which correspond to speedmaps for the FMM method. %\dv{next line should be pushed to background}%
+ %However, their model is based on known person position and orientation in simulation. 
+%\dv{needs more work.}
+In~\cite{gomez2014fast} a theoretical framework for a number of introduced sub-problems of social path planning is presented and an extended model for engaging groups of people is proposed by using a special version of fast marching square planning method~\cite{valero2013fast}. Nonetheless, the information about humans are considered to be given and noiseless, while only simulations have been used to show the effectiveness of the method for static people. The same problem needs to be investigated in real-world scenarios with the challenges that exist therein. Particularly, in the case of moving people, while the perception is subject to uncertainty. 
+%We believe that uncertainty of perception in social robotics is an important topic which to our knowledge is very little explored.
+
+
+
+Uncertainty of perception in social robotics is an important topic which to our knowledge, has not been the subject of many notable studies. There is a dedicated chapter in \cite{correa2014uncertainty} on local planning with uncertainty, however, this is not considered in a social context. The sources of uncertainty in~\cite{correa2014uncertainty} are the position of the robot and the obstacles and the partially known \emph{motion} of moving obstacles that are considered to be people. However, perception of people, and the uncertainty in person and group detection and tracking has not been investigated.
+
+%Another interesting aspect of human-aware navigation problem which should be deeply investigated is knowing how to decide when to replan. As a perquisite, We have studied whether accounting for social costs in the local planner can be effective. In basic navigation, the global path planner, provides a plan and local planner deals with dynamic obstacles and collision avoidance for making it possible to reach the goal. It is common to have social path planners considerate of people's presence and activities, but this is seldom taken into account for local path planners. Of course, this reactive short horizon control does not exactly have a social nature but it is interesting to see, how accounting for social costs in this low level is reflected on the higher level navigational behavior of the robot. By delegating part of the work to the local planner, the cost of global planning which is much larger than the local planning can be reduced. However, for the best behavior, a hybrid approach that adopts the use of social planners on both level is more effective.    
+
+%\zt{Deepak please add background for tracker}
