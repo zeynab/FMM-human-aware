@@ -85,12 +85,10 @@ y
 x_{p}\\ 
 y_{p}
 \end{bmatrix}$. The probabilistic costmap is given by the expected value of the cost $C$, given the person probability distribution $p(x_{p},y_{p})$:
-
-
-\begin{multline}
- $ EC(x, y) = E_{p(x_{p}, y_{p})}[C(x, y;x_{p}, y_{p})] =\\ 
-\int\int K(x-x_{p}, y-y_{p}) p(x_{p}, y_{p}) dx_{p}dy_{p}$
-\end{multline}
+\begin{flalign}
+EC(x, y) = E_{p(x_{p}, y_{p})}[C(x, y;x_{p}, y_{p})] =\\ 
+\int\int K(x-x_{p}, y-y_{p}) p(x_{p}, y_{p}) dx_{p}dy_{p}
+\end{flalign}
 This is a convolution. We approximate this expectation using a grid of probabilities $P$, obtained from the tracker particles:
 
 \begin{equation}
