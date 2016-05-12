@@ -59,7 +59,7 @@ If the center of the costmap, which indicates the position of the person is not 
 
 In the following, we will go into the details of computing social costs with the particles obtained from the MCMC-based tracker. Using the concept of layered costmaps similar to \cite{lu2014iros}, an FMM planner uses this information for performing the replanning.% It should be emphasized that the proposed methods are planner-independent and applicable as far as the costmap concept is supported. 
 %FMM computes the optimal path for the robot for a given destination, according to a potential filed created by the setting of obstacles in an environment based on wave propagation principles. In our system, social costs are incorporated into the FMM method when computing the optimal path by means of imposing them as virtual obstacles.
-\subsubsection{Uncertainty-based Social Costs}
+\subsubsection{Uncertainty-based social costs}
 
 %To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that 
 The MCMC-based tracker provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of joint samples are reported at each time step, containing a set of particles for each person that the tracker detects. In the following, we propose two types of methods for using the particles given by these samples, to create social costmaps.  
@@ -115,7 +115,7 @@ K-means clustering \cite{hartigan1979algorithm} method can be adopted for comput
 To overcome the limitation of K-means clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the particle set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
 
 
-\subsubsection{Deterministic Social Costs}
+\subsubsection{Deterministic social costs}
 For the purpose of creating a baseline to compare our proposed model, we have also designed a deterministic model for the social costmap. 
 Here, we use a deterministic output from the tracker, without considering the particles, by just using the mode of the distribution as deterministic location of the people, along with the conventional costmap model. 
 

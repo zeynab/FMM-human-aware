@@ -16,12 +16,12 @@ together people tend to walk; etc. (2) The complexity of the algorithm depends l
 %more than 40 \textit{ms} with our current implementation of the algorithm. Although it still requires far less than a second, further optimizations could easily improve this performance. 
 ~(3) The method is robust to changes in illumination, shadows and occlusions. It is adapted it to adjust to a non-static background automatically.
 
-\subsection{State representation}
+\subsection{State Representation}
 
 An occupancy grid-based approach is used for tracking the people in the environment.% in this work. 
 ~The environment is discretized into $G$ cells. Each cell is of size 25 \textit{cm} by 25 \textit{cm}. The size of cells have been chosen in such a way that each cell can be occupied at most with one person at any time. The occupancy of each cell is denoted by $X_{i}$ where $i \in G$. The occupancy of all the cells at time $t$ is the state of the world $\textbf{X}_{t}$. At every time instance $t$, the observations from the detector for each cell $i$ is given by $O_{i}$. The set of observations for the whole state is denoted by $\textbf{O}_{t}$. 
 
-\subsection{Tracking model}
+\subsection{Tracking Model}
 
 Let $\textbf{X}_{t}$ be the state of the environment at time \textit{t}.
 \begin{align}
@@ -39,7 +39,7 @@ Although the detector is modelled probabilistically, it is still needed to learn
 
 
 
-\subsection{MCMC sampling}
+\subsection{MCMC Sampling}
 \label{MCMC}
 Markov Chain Monte Carlo is a widely used sampling algorithm for estimation of complex posterior distribution. It has been gaining popularity in multi-target tracking applications \cite{khan2004mcmc}. Compared to traditional particle filters, MCMC-based sampling leads to far less sample impoverishment%[ref]
 ~and thus a much better estimate of the state over time. The core idea of MCMC is to generate samples from a Markov chain. The samples are then evaluated using a \textit{proposal distribution} and accepted or rejected based on an \textit{acceptance probability}. The MCMC sampler creates hypothesis of the location of the people in the grids. Each sample is an estimate of the occupancy of all the cells taken collectively. 
