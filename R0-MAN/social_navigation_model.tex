@@ -120,7 +120,7 @@ For the purpose of creating a baseline to compare our proposed model, we have al
 Here, we use a deterministic output from the tracker, without considering the particles, by just using the mode of the distribution as deterministic location of the people, along with the conventional costmap model. 
 
 
-This is the standard approach that is being used for social path planning in human-aware navigation, where it is assumed that the position and orientation of the person is deterministically known at every time step with no model of uncertainty. Once this information is known, the Gaussian-shaped costmap can be used to obtain the social costs. This costmap can be tuned according to the desired parameters. In this paper, we have taken an approach similar to \cite{gomez2013social} with ${\sigma}_{x} = 0.255\ m$, for deterministic costmaps. 
+This is the standard approach that is being used for social path planning in human-aware navigation, where it is assumed that the position and orientation of the person is deterministically known at every time step with no model of uncertainty. Once this information is known, the Gaussian-shaped costmap can be used to obtain the social costs. This costmap can be tuned according to the desired parameters. In this paper, we have taken an approach similar to \cite{gomez2013social} with ${\sigma}_{x} = {\sigma}_{y} = 0.255\ m$, for deterministic costmaps. Since we are studying the uncertainty of position information only, we did not take into account the orientation of people when constructing the social costmaps. This will be a future step requiring further studies.
 
 
  
