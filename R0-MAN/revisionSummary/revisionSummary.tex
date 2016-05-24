@@ -1,14 +1,15 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 \usepackage{graphicx}
 
 \begin{document}
 
-\title{Revision Summary}
-\author{Zeynab Talebpour, Deepak Viswanathan, Rodrigo Ventura}
+\title{ \textbf{Revision Summary} \\ \\
+"Incorporating Perception Uncertainty in Human-Aware Navigation: A Comparative Study"}
+\author{Zeynab Talebpour, Deepak Viswanathan, Rodrigo Ventura,\\ Gwenn Englebienne and Alcherio Martinoli}
 
-\maketitle
+%\maketitle
 
-The main issues pointed out by the reviewers have been addressed in this version of the paper and a numbered list of how each point has been resolved can be found in the following.
+The main issues pointed out by the reviewers have been addressed in this version of the paper and a numbered list of how each point has been resolved or explained can be found in the following.
 
 %\begin{abstract}
 %The abstract text goes here.
@@ -34,5 +35,66 @@ The main issues pointed out by the reviewers have been addressed in this version
 
 %\section{Conclusion}
 %Write your conclusion here.
+
+\begin{enumerate}
+  \item Concerns about the tracking model regarding equation $1$:\\-------
+  
+  
+  \item Learning of $P(\textbf{O}_{t} | \textbf{X}_{t})$ for the locations and configurations of the state space:\\-------
+  
+  
+  
+  
+  \item Evaluation concerns regarding the ground truth:
+  \\This is a completely valid concern and as pointed out in the future work of our paper, we are working on improving this absolutely important aspect of providing a precise and reliable ground truth for tracking moving people in real environments. However, with the marker-less tracking system that we had at the time we could not do any better. %We have stated this more clearly and emphasize further on this point in the paper based on the reviewer's feedback. 
+  
+  We were aiming to understand the overall behavior of the robot when using our proposed method and we have records of a modified behavior of the robot in terms of HAN in all of the scenarios, knowing the positions of the people (scenario 1 and 3) or their overall trajectory (scenario 2). In other words, although the position of the moving person is not precisely known at all times during all experiments, the different behaviors of the robot when adopting each method is very informative and we can conclude the effectiveness of our method based on this. Nonetheless, there is no question about the necessity of improving our evaluation methods.
+  
+  
+  For scenario 2, the modified trajectory of the robot shows how CHA can be a remedy to noisy perception by considering uncertainty. In Figure 4.b CHA has resulted in a trajectory that is smoother and deviates from the straight line, whereas, BN and DHA (due to delays in person tracking) make abrupt changes when encountered closely by the person. 
+  
+  
+ 
+%This is a limitation of our current setting and not a limitation of the method. We need to point out that we are still able to capture the uncertainty of perception and act accordingly in the robot side. However our evaluation methods need to be further improved.
+%fig4-b clearly shows a different approach when using cha while BN and DHA are almost similar due to the tracker delay and errors. This shows how CHA can be a remedy to noisy perception by considering uncertainty. So there is evidence on the effectiveness of our method but we believe reporting m1-m3 may be deluding due to the delays and we do not trust them.
+  
+  
+  
+  
+  \item Reporting sigma values:\\ This was previously reported. However, we tried to make it more clear by adding more information.
+  
+  
+  
+  
+  
+  \item Motion transition model is limited to static and low dynamic scenes:\\-------
+  
+  
+  
+  
+  \item Improving the explanation of Figure $7c$:\\Considering all experiments of scenario 3 the accumulated social cost associated to DHA is larger than of the CHA (2923 for DHA vs. 2772 for CHA).
+  
+  
+  
+  
+  \item Title capitalization inconsistencies: \\ All titles for sections and subsections follow the same format now.
+  
+  
+  
+  \item Adding the trajectory of the moving human: \\ Figure 4 is changed to indicate the trajectory of the moving person over time. However, we emphasize that this trajectory is not obtained by the tracker, but is given as a plan to the person involved in the experiment. As stated in the paper, the ground truth position given by the tracker is not very precise for the case of the moving person due to delays and larger position errors. Improving this aspect is a vital future step in our research.  % due to the delays introduced by the tracker the position information for the moving person is not precisely mapped to the time. In other words, the person is detected and tracked with the accuracy of approximately 25 $cm$ but because of the delayed timestamps 
+  
+  
+  
+  \item Why does BN keep a larger distance to the person depicted by the red circle in Figure 4, compared to the CHA method?
+  \\This is due to the robot being ignorant of that person and trying to take the shortest path to the goal in BN. In other words, the robot does not differentiate between people and obstacles and tries to avoid people using its local sensors without any social path planning. Therefore, in this case, the robot does not plan ahead for having a socially-accepted navigation behavior when encountering the person in blue and moves in a straight line instead. This results in a larger distance to person shown in green, while CHA assigns some social costs to areas around both humans which causes the robot to deviate its path from a straight line.
+  
+  
+  
+  
+  \item Lack of statistical analysis:\\ This is an important point that will be considered in the future. However, since we had three scenarios and five methods we could not afford more tests with real robots in the limited time that we had. This gives a total of $5\times 3\times 5 = 45$ trials which were partially reported for the sake of concessions (we did not report clustering methods for scenario 2 and 3 since they were shown to be inferior to CHA in scenario 1).
+  
+\end{enumerate}
+
+
 
 \end{document}
