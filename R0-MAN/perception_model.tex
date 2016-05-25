@@ -29,7 +29,7 @@ Let $\textbf{X}_{t}$ be the state of the environment at time \textit{t}. We are 
 
 \begin{align}
 P(\textbf{X}_{t} | \textbf{O}_{1:t}) \propto   P(\textbf{O}_{t} | \textbf{X}_{t}) \sum\limits_{\textbf{X}_{t-1}} P(\textbf{X}_{t}|\textbf{X}_{t-1}) P(\textbf{X}_{t-1}|\textbf{O}_{1:t-1}) \end{align} 
-
+where, $P(\textbf{O}_{t} | \textbf{X}_{t})$ is the likelihood of the state given all our observations (detector outputs). Computation of this likelihood is best performed by using a learned model of how the detectors perform in different states.
 %Observations at time \textit{t} only depends on the state at time \textit{t}.
 %Now, $\textbf{O}_{t}$ only depends on $\textbf{X}_{t}$ and not on $\textbf{X}_{t-1}$. Applying this in equation above,
 
@@ -38,7 +38,7 @@ P(\textbf{X}_{t} | \textbf{O}_{1:t}) \propto   P(\textbf{O}_{t} | \textbf{X}_{t}
 %\end{align} 
 
 
-Where, $P(\textbf{O}_{t} | \textbf{X}_{t})$ is the likelihood of the state given all our observations (detector outputs). Computation of this likelihood is best performed by using a learned model of how the detectors perform in different states.
+
 
 $P(\textbf{X}_{t}|\textbf{X}_{t-1})$ is the \textit{transition model} which models the evolution of the state variables. For a real multi person environment, an exact analytical model is intractable. In our system, we use a simple uniform distribution for the transition model. We assume that people move randomly and that there is an equal probability of motion in any direction. 
 
