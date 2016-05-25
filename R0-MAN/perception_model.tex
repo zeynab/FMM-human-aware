@@ -48,7 +48,7 @@ In a multi person environment, the state space is extremely complex for computin
 distribution over the states. We use an MCMC-based sampling algorithm to approximately compute the belief. In the next section the implementation details of our probabilistic model for person detection and tracking are explained.
 
 
-Although the detector is modelled probabilistically, it is still needed to learn the distribution $P(\textbf{O}|\textbf{X})$ for the detector from data. Given the labelled location of the people in a data set, the uncertainty in the observations is learned for all the locations and configurations of the state space. Since the state space has high dimensionality, we learn the likelihood model over a parameterised state space \cite{berclaz-fleuret-fua-2008}.
+Although the detector is modelled probabilistically, it is still needed to learn the distribution $P(\textbf{O}|\textbf{X})$ for the detector from data. Given the labeled location of the people in a data set, the uncertainty in the observations is learned for all the locations and configurations of the state space. Since the state space has high dimensionality, we learn the likelihood model over a parameterised state space \cite{berclaz-fleuret-fua-2008}.
 
 
 
