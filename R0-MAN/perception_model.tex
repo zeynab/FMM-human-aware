@@ -21,7 +21,7 @@ An occupancy grid-based approach is used for tracking the people in the environm
 
 \subsection{Tracking Model}
 
-Let $\textbf{X}_{t}$ be the state of the environment at time \textit{t}. We are interested in computing the current belief over the states $\textbf{X}_{t}$ given the observations $\textbf{O}_{1:t}$. Formally this can be represented by a Bayes filter~\cite{khan2004mcmc} as,
+Let $\textbf{X}_{t}$ be the state of the environment at time \textit{t}. We are interested in computing the current belief over the states $\textbf{X}_{t}$ given the observations $\textbf{O}_{1:t}$, that is, $P(\textbf{X}_{t}|O_{1:t})$. Formally this can be represented by a Bayes filter~\cite{khan2004mcmc} as,
 
 %\begin{align}
 %P(\textbf{X}_{t} | \textbf{O}_{t},\textbf{X}_{t-1}) = \dfrac{P(\textbf{O}_{t} | \textbf{X}_{t},\textbf{X}_{t-1}) P(\textbf{X}_{t}|\textbf{X}_{t-1})} {P(\textbf{O}_{t}|\textbf{X}_{t-1})}
@@ -42,7 +42,7 @@ where, $P(\textbf{O}_{t} | \textbf{X}_{t})$ is the likelihood of the state given
 
 $P(\textbf{X}_{t}|\textbf{X}_{t-1})$ is the \textit{transition model} which models the evolution of the state variables. For a real multi person environment, an exact analytical model is intractable. In our system, we use a simple uniform distribution for the transition model. We assume that people move randomly and that there is an equal probability of motion in any direction. 
 
-$P(\textbf{X}_{t-1}|\textbf{O}_{1:t-1})$ is the posterior probability computed from the previous time step.
+$P(\textbf{X}_{t-1}|\textbf{O}_{1:t-1})$ is the belief computed at the previous time step.
 
 In a multi person environment, the state space is extremely complex for computing the exact probability 
 distribution over the states. We use an MCMC-based sampling algorithm to approximately compute the belief. In the next section the implementation details of our probabilistic model for person detection and tracking are explained.
