@@ -12,7 +12,7 @@
 
 %\dv{Sections 3 and 4 can be used to explain our model. First the perception and then the human aware navigation model. Don't spend too much time explaining the background of these methods. Make that brief and explain more on our approaches. It is a bit confusing when you split social path planning and navigation. I feel its better to have it under the same section. We have one Human aware navigation model which could have a subsection for social cost and such and another for navigation(FMM,DWA).}
 
-In this section we will explain the navigation component of the system and describe the social cost computations methods that provide the information required for our socially-aware FMM-based path planner. Fig. \ref{fig:block} shows the system components and their connections.
+In this section we will explain the navigation component of the system and describe the social cost computations methods that provide the information required for our socially-aware FMM path planner. Fig. \ref{fig:block} shows the system components and their connections.
 
 %The model used for achieving human-aware navigation, mainly consists of accounting for social costs in the planners. In this work we focus on modelling social costs based on the proxemics principle, targeted for real robotic applications in the presence of noisy perception. These costs are then used in an FMM-based global planner, resulting in trajectories that respect social considerations.% However, we extend the deterministic model of social costmaps, for taking the uncertainty of perception into account. For this purpose, three different methods have been proposed in combination with a probabilistic tracker, for obtaining uncertainty-based social costs. 
 
@@ -40,7 +40,7 @@ FMM and DWA run asynchronously. FMM is activated when either a new goal position
 The personal space around a human can be defined as the mixture of two pseudo-Gaussian functions, one for the front and another one for the rear part of the area surrounding the person. The orientation and heading of the person will cause a corresponding rotation in these functions in such a way that the person is always in the center and the absolute orientation of the person matches that of the Gaussian functions. 
 A Gaussian function $\phi$, centered on $p$ with covariance matrix $\Sigma$, is defined as follows:
 
-\begin{equation}
+\begin{equation}\label{eq:phi}
 \phi(q) = exp\begin{Bmatrix}
 -\frac{1}{2}(q-p)^{T}\Sigma^{-1}(q-p)
 \end{Bmatrix}\end{equation}
@@ -62,12 +62,12 @@ In the following, we will go into the details of computing social costs with the
 \subsubsection{Uncertainty-based social costs}
 
 %To include the uncertainty of perception in our model, we need to have an estimate of the underlying distribution of people present in the environment at each time step. This is given by the MCMC-based tracker, that 
-The MCMC-based tracker provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of joint samples are reported at each time step, containing a set of particles for each person that the tracker detects. In the following, we propose two types of methods for using the particles given by these samples, to create social costmaps.  
+The MCMC-based tracker provides samples of the \textit{union} of the probability distributions for having a person in a given environment. More specifically, a predefined number of joint samples are reported at each time step, containing a set of particles for each person that the tracker detects. In the following, we propose two types of methods for using the particles given by these samples to create social costmaps.  
 
 
-\subsubsection*{\normalfont \textbf{Convolution}}
+\subsubsection*{\normalfont \textit{Convolution}}
 
-The core idea we propose for incorporating uncertainty in the costmap is to compute an \textit{expectation} based costmap.
+The core idea we propose for incorporating uncertainty in the costmap is to compute an \textit{expectation}-based costmap.
 %In other words, we treat the probability map of the presence of people in the environment as a two dimensional signal and convolve it with the conventional Gaussian costmap, to obtain the final probabilistic social costs. 
 %If $K$ is a 2D Gaussian kernel of size $m\times n$ representing the social costmap, the social cost of each grid cell is computed as follows:   
 %\begin{equation}
@@ -78,7 +78,7 @@ The core idea we propose for incorporating uncertainty in the costmap is to comp
 \begin{equation}
     C(x, y;x_{p}, y_{p}) = K(x-x_{p}, y-y_{p})
 \end{equation}
-$K$ is the 2D Gaussian, modeling the standard social costmaps, \textit{i.e.}, it is $\phi$ when $q=\begin{bmatrix}
+$K$ is the 2D Gaussian, modeling the standard social costmaps, \textit{i.e.}, $\phi$ of Eq. (\ref{eq:phi}) when $q=\begin{bmatrix}
 x\\ 
 y
 \end{bmatrix}$ and $p=\begin{bmatrix}
@@ -102,17 +102,19 @@ since we are not abstracting away any information provided by the perception sys
 
 %There are two main steps required for acquiring the final costmap of the environment using this approach. 1) Create a probability map for the presence of people in the environment, 2) by convolving this probability map with the Gaussian-shaped social costmap for an individual person, obtain the final social costmap that contains the social costs related to all the people present in the environment.
    
-By taking this approach, the conventional 2D Gaussian shape of the social costmap is no longer mandatory, thus this costmap model is more flexible. Additionally, there is no need to know the number of people ahead of time as the particles given by tracker are reflecting this (refer to \ref{MCMC}).% \dv{add a picture somewhere of how the cost map looks}
+By taking this approach, the conventional 2D Gaussian shape of the social costmap is no longer mandatory, thus this costmap model is more flexible. Additionally, there is no need to know the number of people ahead of time as the particles given by tracker are reflecting this (refer to section \ref{MCMC}).% \dv{add a picture somewhere of how the cost map looks}
 
 
-\subsubsection*{\normalfont \textbf{Clustering}}
+\subsubsection*{\normalfont \textit{Clustering}}
 Another approach we propose is to abstract the uncertainty information in the samples by clustering the particles and then computing the uncertainty based on the features of the cluster. Upon receiving the position particles from the tracker we compute the center of the social costmaps, and the ${\sigma}$ values for all the people present in the environment. By clustering the particles and finding the centroids of the clusters, along with an uncertainty measure based on the spatial cluster scatter, we can adaptively compute the social costmaps at each time step. We will briefly describe the two clustering methods selected for our work in the following.
 \paragraph{K-means clustering}
 
-K-means clustering \cite{hartigan1979algorithm} method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is knowing K which is the number of clusters and in our case the number of people, ahead of time. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods.% both in simulation and reality.
+a K-means clustering% \cite{hartigan1979algorithm} 
+~method can be adopted for computing the costmap centers and $\Sigma$. However, one requirement for using this method is 
+to know a priori the number of clusters K, in our case corresponding to the number of people. This is not a realistic assumption for dynamic environments with multiple people. Nonetheless, we will test this method as a baseline for comparing the performances of other human-aware navigation methods.% both in simulation and reality.
 
 \paragraph{Mean shift clustering}
-To overcome the limitation of K-means clustering method for needing to know the number of clusters ahead of time, we chose another clustering method, mean shift clustering \cite{comaniciu2002mean}, that is able to determine the number of clusters given the particle set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
+to overcome the limitations of the K-means clustering method, we considered as well the mean shift clustering algorithm \cite{comaniciu2002mean}, a method able to determine the number of clusters given the particle set automatically. We used the median of all pairwise distances to estimate the bandwidth of the mean shift method.
 
 
 \subsubsection{Deterministic social costs}
@@ -120,7 +122,7 @@ For the purpose of creating a baseline to compare our proposed model, we have al
 Here, we use a deterministic output from the tracker, without considering the particles, by just using the mode of the distribution as deterministic location of the people, along with the conventional costmap model. 
 
 
-This is the standard approach that is being used for social path planning in human-aware navigation, where it is assumed that the position and orientation of the person is deterministically known at every time step with no model of uncertainty. Once this information is known, the Gaussian-shaped costmap can be used to obtain the social costs. This costmap can be tuned according to the desired parameters. In this paper, we have taken an approach similar to \cite{gomez2013social} with ${\sigma}_{x} = {\sigma}_{y} = 0.255\ m$, for deterministic costmaps. Since we are studying the uncertainty of position information only, we did not take into account the orientation of people when constructing the social costmaps. This will be a future step requiring further studies.
+This is the standard approach that is being used for social path planning in human-aware navigation, where it is assumed that the position and orientation of the person is deterministically known at every time step, with no model of uncertainty. Once this information is known, the Gaussian-shaped costmap can be used to obtain the social costs. This costmap can be tuned according to the desired parameters. In this paper, we have taken an approach similar to \cite{gomez2013social} with ${\sigma}_{x} = {\sigma}_{y} = 0.255\ m$, for deterministic costmaps. Since we are studying the uncertainty of position information only, we did not take into account the orientation of people when constructing the social costmaps. This will be a future step requiring further studies.
 
 
  

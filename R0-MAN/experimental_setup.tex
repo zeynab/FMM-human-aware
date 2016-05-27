@@ -1,6 +1,6 @@
 \section{Experiments}
 \label{exp}
-In this section we will briefly explain our robotic platform, experimental setup and the set of experiments along with the metrics which have been conducted to evaluate the performance of our system.
+In this section we will briefly explain our robotic platform, experimental setup, and the set of experiments, along with the corresponding metrics, which have been conducted to evaluate the performance of our system.
 
 \subsection{Robotic Platform}
 \label{sec:robot}
@@ -28,19 +28,19 @@ In this section we will briefly explain our robotic platform, experimental setup
 %\end{figure}
 
 
-The robotic platform used in this work is shown in Fig. \ref{fig:setup}. This robot is called MBot \cite{Messias2014robotic} and is developed within the FP7 European project MOnarCH.
+The robotic platform used in this work is shown in Fig. \ref{fig:setup}. This robot is called MBot \cite{Messias2014robotic} and has been developed within the FP7 European project MOnarCH\footnote{http://monarch-fp7.eu/}.
 It is an omni-directional drive robot with an approximately round footprint of 0.65~\textit{m} in diameter and a height of 0.98~\textit{m}.
-It is provided with two laser range finders, on both the front and the back for providing 360$^{\circ}$ coverage.
+It is endowed with two laser range finders, on both the front and the back for providing 360$^{\circ}$ coverage.
 
 Two batteries give it an autonomy of approximately five hours, depending on the usage.
-The robot has two PCs inside its shell: one manages the sensors, navigation and actuators, while the second one is for other functions such as human-robot interaction functionalities.%, which are outside our interests for this work.
+The robot has two PCs inside its shell: one manages the sensors, navigation and actuators, while the second one supports other functions such as human-robot interaction functionalities.%, which are outside our interests for this work.
  The two on-board PCs, run Ubuntu desktop 12.04 and ROS Hydro. 
 
 
 \subsection{Experimental Setup}
 \label{sec:Experimental_setup}
 
-We have used an extensive suite of experiments both in simulation and reality, for performance evaluation. A high fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the MBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more close to reality simulations. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
+We have used an extensive suite of experiments both in simulation and reality, for performance evaluation. The high-fidelity robotic simulator Webots \cite{michel1998webots}, with realistic models of the MBot and the testing environment has been used for evaluations in the initial step. The trackers have been emulated initially, but real recorded data bags of perception were used in the next steps for more faithful simulation. This was done to simplify the debugging process and speeding up the robotic experiments. %by replaying real uncertainty and tracking data from real experiments.
 Finally, we tested our methods in reality in three different scenarios, in a laboratory environment of 5~\textit{m}~$\times$~7~\textit{m}%, depicted in Fig. \ref{fig:arena} 
 ~where the tracker was operational.
  
@@ -52,21 +52,21 @@ Finally, we tested our methods in reality in three different scenarios, in a lab
 %\end{figure*}
 
 We used a networked omnidirectional overhead camera with a field of view of 180$^{\circ}$, to track the positions of the people in the environment. This type of camera was chosen because: (1) it is less obtrusive, and can be left in the environment with less risk of making people feel uncomfortable about being watched; 
-(2) it provides a global view of the area, with lower risk of occlusion than elevated side-view cameras and with more flexibility as to its positioning; (3) the number of cameras needed in the environment can be reduced, which has benefits in terms of equipment cost, installation cost and computational load of the perception algorithms. 
+(2) it provides a global view of the area, with lower risk of occlusion than elevated side-view cameras and with more flexibility as to its positioning; (3) the number of cameras needed in the environment can be reduced, which has benefits in terms of equipment cost, installation cost, and computational load of the perception algorithms. 
 
 
 %People detection and tracking is done by means of a networked omni-directional cmaera with 180 degrees field of view. 
-The tracker outputs results at the rate of 3~\textit{Hz}. The ground truth position of the robot is given by AMCL with 5-10~\textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth for the purpose of performance evaluation.
+The tracker outputs results at the rate of 3~\textit{Hz}. The ground truth position of the robot is given by the on-board AMCL with 5-10~\textit{cm} accuracy, and the person stands and walks on physically marked tracks to get the exact precise ground truth for the purpose of performance evaluation.
 The control rate of navigation is 20~$Hz$ while the social costmap generation has a rate of approximately 3~\textit{Hz}. This is to account for the low output frequency of the tracker.
 
 
 \subsection{Scenarios}
 \label{sec:scenarios}
 
-We have studied three different scenarios, each having been tested five times. We started with 1) a single static person and incrementally increased the complexity to 2) one moving person and finally, 3) two static people in the arena. It should be emphasized that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
+We have investigated three different scenarios, each having been tested five times. We started with 1) a single static person and incrementally increased the complexity to 2) one moving person and finally, 3) two static people in the arena. It should be emphasized that perception uncertainty is affecting the tracking performance and is not evident or quantifiable from just looking at the environment. This means, the person is not aware of what is happening on the tracker side, however, the information given by the tracker greatly affects the behavior of the robot, and therefore the social acceptability. 
 
 
-Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point to point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task.
+Since we aim to study the effect of perception uncertainty in human-aware navigation, we chose a task of point-to-point navigation for the robot in the vicinity of humans, which is the most general and basic navigation task.
 
 %The complexity of the navigation task can be increased and more interesting scenarios in terms of Human Robot Interaction (HRI) can be investigated, but that is outside the scope of this work. 
 
@@ -89,7 +89,7 @@ Five different metrics have been defined for performance evaluation. A subset of
 
 \item $m_{3}$: Quantifies the accumulated social cost, this is to differentiate between being in different positions of the social costmap, which is not reflected in $m_{2}$. So if the robot is closer to a person, the social cost will be higher and this metric will increase. For more information on $m_{1}-m_{3}$ refer to \cite{talebpour2015board}. 
 
-\item  $m_{4}$: Evaluates the smoothness of the robot trajectory. This is important from the human observer's point of view when perceiving the robot motion. Humans are known to prefer motion with minimum jerk \cite{sisbot2010synthesizing}, therefore we took the root mean squared error (RMSE) of the trajectory jerk in $m_{4}$:
+\item  $m_{4}$: Evaluates the smoothness of the robot trajectory. This is important from the human observer's point of view when perceiving the robot motion. Humans are known to prefer motion with minimum jerk \cite{sisbot2010synthesizing}, therefore we took the root Mean Squared Error (RMSE) of the trajectory jerk in $m_{4}$:
 \begin{equation}
 r_{t} = \begin{bmatrix}
 x_{t}\\
